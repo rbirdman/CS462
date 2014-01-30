@@ -14,21 +14,35 @@ class HomeController < ApplicationController
 	
 	def index
 		puts "<html>Received SSL connection</html>"
+		Rails.logger.debug "Opening Index"
 	end
 	
     def signup
-		# Non-SSL access will be redirected to SSL
+		Rails.logger.debug "Opening Signup"
     end
     
-    def payment
-		# Non-SSL access will be redirected to SSL
+    def login
+		Rails.logger.debug "Opening Login"
+		id = params[:id]
+		if id
+			
+			
+		else
+			
+		end
     end
 	
-    def index
-		# This action will work either with or without SSL
+    def profile
+		Rails.logger.debug "Opening Profile"
+		id = params[:id]
+		if id
+			Rails.logger.debug "Profile: " + id
+			
+		else
+			Rails.logger.debug "Profile: Should view table"
+		end
     end
 	
-    def other
-		# SSL access will be redirected to non-SSL
-    end
+	
+	
 end

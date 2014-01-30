@@ -1,0 +1,22 @@
+
+<body>
+profile.html<br>
+Hello from Ryan!<br>
+
+<% id = params[:id] %>
+<% if id %>
+	<h3>View <%= id %>'s profile</h3>
+	<h3>Check credentials here</h3>
+<% else %>
+	<h2>Place table of available users here</h2>
+<% end %>
+
+<% for num in 0..4 %>
+	<%= num %><br>
+<% end %>
+
+<% (0..5).each do |num| %>
+	<%= "Here is " + num.to_s %><br>
+<% end %>
+
+</body>

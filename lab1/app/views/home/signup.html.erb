@@ -1,0 +1,9 @@
+
+<body>
+<%= form_tag("/authorize", method: "get") do %>
+  <%= label_tag(:id, "User Name:") %>
+  <%= text_field_tag(:id) %>
+  <%= submit_tag("Sign up") %>
+<% end %>
+
+</body>

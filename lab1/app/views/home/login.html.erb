@@ -1,0 +1,9 @@
+
+<body>
+<%= form_tag("/login", method: "get") do %>
+  <%= label_tag(:id, "User Name:") %>
+  <%= text_field_tag(:id) %>
+  <%= submit_tag("Log in") %>
+<% end %>
+
+</body>

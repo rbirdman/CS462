@@ -5,6 +5,14 @@ Lab1::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'home#index'
+  #:protocol => 'https'
+  
+  get "login" => "home#login"
+  get "login/:id" => "home#login"
+  get "profile" => "home#profile"
+  get "profile/:id" => "home#profile"
+  get "signup" => "home#signup"
+  get "authorize/:id"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
