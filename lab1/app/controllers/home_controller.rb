@@ -8,6 +8,9 @@ class HomeController < ApplicationController
 	ssl_required :home
 	ssl_allowed :index
 	
+	require "net/http"
+	require "json"
+	
 	#caused problems with rendering
     #before_filter :initialize
     
@@ -50,8 +53,10 @@ class HomeController < ApplicationController
 				Rails.logger.debug "Unknown login User"
 				#authorize
 				
-				Rails.logger.debug "Home url: " + @home_url
-                redirect_to @fourSquare.authorize_url(@home_url + "/token/" + id)
+				redirect_url = @home_url + "/token/" + id
+				Rails.logger.debug "Home url: " + redirect_url
+                #redirect_to @fourSquare.authorize_url(@home_url + "/token/" + id)
+				redirect_to "https://foursquare.com/oauth2/authenticate?client_id=#{@client_id}&response_type=code&redirect_uri=#{redirect_url}"
 				
 				#temp = Users.create(:user => id, :access_token => "12345")
 				#temp.save
@@ -72,17 +77,24 @@ class HomeController < ApplicationController
             Rails.logger.debug "Getting token"
             Rails.logger.debug "Id: " + id
         
-            access_token = @fourSquare.access_token(params[:code], @home_url)
+            #access_token = @fourSquare.access_token(params[:code], @home_url + "/token/"+id)
+            
+            ri = URI.parse("https://foursquare.com/oauth2/access_token")
+			args = {client_id: @client_id, client_secret: client_secret, grant_type: 'authorization_code', redirect_uri: access_url, code: params[:code]}
+			uri.query = URI.encode_www_form(args)
+			http = Net::HTTP.new(uri.host, uri.port)
+			http.use_ssl = true
+            request = Net::HTTP::Get.new(uri.request_uri)
+
+			response = http.request(request)
+			access_token = response.body #this is JSON format
             #Do I have THE token at this point?
             Rails.logger.debug "First: " + access_token
+            access_token = JSON.parse(access_token).access_token
+            Rails.logger.debug "Second: " + access_token
         else
             Rails.logger.debug "Access Token: " + params[:access_token]
         end
-	end
-	
-	def get_access_token
-        id = params[:id]
-        Rails.logger.debug "Getting access token for: " + id
 	end
 	
     def profile
