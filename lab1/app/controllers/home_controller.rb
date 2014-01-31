@@ -79,8 +79,9 @@ class HomeController < ApplicationController
         
             #access_token = @fourSquare.access_token(params[:code], @home_url + "/token/"+id)
             
-            ri = URI.parse("https://foursquare.com/oauth2/access_token")
-			args = {client_id: @client_id, client_secret: client_secret, grant_type: 'authorization_code', redirect_uri: access_url, code: params[:code]}
+            uri = URI.parse("https://foursquare.com/oauth2/access_token")
+			access_url = @home_url + "/token/"+id
+			args = {client_id: @client_id, client_secret: @client_secret, grant_type: 'authorization_code', redirect_uri: access_url, code: params[:code]}
 			uri.query = URI.encode_www_form(args)
 			http = Net::HTTP.new(uri.host, uri.port)
 			http.use_ssl = true
@@ -90,10 +91,14 @@ class HomeController < ApplicationController
 			access_token = response.body #this is JSON format
             #Do I have THE token at this point?
             Rails.logger.debug "First: " + access_token
-            access_token = JSON.parse(access_token).access_token
-            Rails.logger.debug "Second: " + access_token
+            access_token = JSON.parse(access_token)
+            Rails.logger.debug "Second: " + access_token["access_token"]
+		Users.create(:user => id, :access_token => access_token["access_token"]);
+		redirect_to "/authorize/" + id
+		
         else
-            Rails.logger.debug "Access Token: " + params[:access_token]
+		Rails.logger.debug "No id"
+            redirect_to "/login"
         end
 	end
 	
