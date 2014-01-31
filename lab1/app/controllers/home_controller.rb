@@ -8,13 +8,13 @@ class HomeController < ApplicationController
 	ssl_required :home
 	ssl_allowed :index
 	
-    before_filter :initialize
+	#caused problems with rendering
+    #before_filter :initialize
     
-    def initialize
-        @client_id = "QM50Z5KIPPBQAQ3CAB1POYS5K5P2SBIRQZBTJBGCHI0LLF4E"
+    def set_variables
+    	@client_id = "QM50Z5KIPPBQAQ3CAB1POYS5K5P2SBIRQZBTJBGCHI0LLF4E"
         @client_secret = "BI4LKYTMWVUK1WKAX3HBKJQBZRVBNVJA1HMG10IR10EJ5SVQ"
-        @home_url = "https://ec2-54-221-60-170.compute-1.amazonaws.com"
-        
+        @home_url = "https://ec2-54-221-60-170.compute-1.amazonaws.com"    
         @fourSquare = Foursquare::Merchant::Consumer.new(@client_id, @client_secret)
     end
 	
@@ -33,6 +33,8 @@ class HomeController < ApplicationController
     
     def login
 		Rails.logger.debug "Opening Login"
+		
+		set_variables()
 		
 		id = params[:id]
 		if id
@@ -63,13 +65,14 @@ class HomeController < ApplicationController
 	
 	def get_token
 		id = params[:id]
+        set_variables()
         
         if params[:code]
         
             Rails.logger.debug "Getting token"
             Rails.logger.debug "Id: " + id
         
-            access_token = @fourSquare.access_token(params[:code], @home_url + "/token/"+id)
+            access_token = @fourSquare.access_token(params[:code], @home_url)
             #Do I have THE token at this point?
             Rails.logger.debug "First: " + access_token
         else
@@ -102,6 +105,7 @@ class HomeController < ApplicationController
         #if Users.exists?(id)
         if user
             Rails.logger.debug "User accepted"
+            #set current_user
             
             redirect_to "/profile/" + id
             return
