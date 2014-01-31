@@ -7,5 +7,9 @@ Feel free to login or signup for my service
 <%= link_to "Login", '/login' %>
 <%= link_to "Sign up", '/signup' %>
 
+<h3>Users</h3>
+<% Users.all.each do |user| %>
+  <li><a href="/profile/<%= user.user %>"><%= user.user %></a></li>
+<% end %>
 
 </body>

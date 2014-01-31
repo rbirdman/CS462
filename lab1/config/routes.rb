@@ -12,7 +12,10 @@ Lab1::Application.routes.draw do
   get "profile" => "home#profile"
   get "profile/:id" => "home#profile"
   get "signup" => "home#signup"
-  get "authorize/:id"
+  get "authorize/:id" => "home#authorize"
+  
+  get "token/:id" => "home#get_token"
+  #get "authorize/:id" => "home#get_access_token"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
