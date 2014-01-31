@@ -9,6 +9,7 @@ Lab1::Application.routes.draw do
   
   get "login" => "home#login"
   get "login/:id" => "home#login"
+  get "logout" => "home#logout"
   get "profile" => "home#profile"
   get "profile/:id" => "home#profile"
   get "signup" => "home#signup"

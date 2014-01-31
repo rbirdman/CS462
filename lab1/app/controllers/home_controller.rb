@@ -137,4 +137,16 @@ class HomeController < ApplicationController
         redirect_to "/login"
 	end
 	
+	def logout
+		Rails.logger.debug "Logging out"
+		view_context.clear_user()
+		val = view_context.current_user
+		if val != "" or val != nil
+			Rails.logger.error "Logout failure: still logged as " + val
+		else
+			Rails.logger.debug "Logout successful"
+		end
+		
+		redirect_to :back
+	end
 end
