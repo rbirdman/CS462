@@ -39,7 +39,7 @@ module HomeHelper
 	
 	def requestCheckins()
 		#https://api.foursquare.com/v2/users/self/checkins?oauth_token=ACCESS_TOKEN
-		token = Users.find_by(:user => 'rbird')
+		token = Users.find_by(:user => params[:id])
 		args = {oauth_token: token.access_token, v: "20140131"}
 		request = requestHTTPS("https://api.foursquare.com/v2/users/self/checkins",args)
 		checkins = JSON.parse(request)["response"]["checkins"]
