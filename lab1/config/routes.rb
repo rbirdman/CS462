@@ -13,6 +13,7 @@ Lab1::Application.routes.draw do
   get "profile" => "home#profile"
   get "profile/:id" => "home#profile"
   get "signup" => "home#signup"
+  get "signup/:id" => "home#signup"
   get "authorize/:id" => "home#authorize"
   
   get "token/:id" => "home#get_token"
