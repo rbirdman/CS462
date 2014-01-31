@@ -33,8 +33,10 @@ class HomeController < ApplicationController
     
     def login
 		Rails.logger.debug "Opening Login"
+		
 		id = params[:id]
 		if id
+			#Users.create(:user => id, :access_token => "433LBRENTEZLBGW4UZE4XAPWXNV51D5FQDJAHM0HRQXSWHMC")
 			user = Users.find_by user: id
 			if user
 			#if Users.exists?(id)
@@ -62,12 +64,17 @@ class HomeController < ApplicationController
 	def get_token
 		id = params[:id]
         
-        Rails.logger.debug "Getting token"
-        Rails.logger.debug "Id: " + id
+        if params[:code]
         
-		access_token = @fourSquare.access_token(params[:code], @home_url + "/authorize/"+id)
-		#Do I have THE token at this point?
-        Rails.logger.debug access_token
+            Rails.logger.debug "Getting token"
+            Rails.logger.debug "Id: " + id
+        
+            access_token = @fourSquare.access_token(params[:code], @home_url + "/token/"+id)
+            #Do I have THE token at this point?
+            Rails.logger.debug "First: " + access_token
+        else
+            Rails.logger.debug "Access Token: " + params[:access_token]
+        end
 	end
 	
 	def get_access_token
@@ -89,11 +96,13 @@ class HomeController < ApplicationController
 	#authorizes from self and from SquareTag
 	def authorize
 		id = params[:id]
+		
         Rails.logger.debug "Authorizing: " + id
         user = Users.find_by user: id
         #if Users.exists?(id)
         if user
             Rails.logger.debug "User accepted"
+            
             redirect_to "/profile/" + id
             return
         else

@@ -18,6 +18,16 @@ module HomeHelper
 		$current_user = user
 	end
 	
+	def get_user(id)
+		 user = Users.find_by(:user => id)
+		 #Rails.logger.debug "Query: " + id
+		 #Rails.logger.debug user
+		 #Rails.logger.debug user.user
+		 #Rails.logger.debug user.access_token
+		 
+		 user
+	end
+	
 	def clear_user()
 		$current_user = nil
 	end

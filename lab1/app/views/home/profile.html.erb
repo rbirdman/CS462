@@ -5,8 +5,10 @@ Hello from Ryan!<br>
 
 <% id = params[:id] %>
 <% if id %>
+	<% user = get_user(id) %>
 	<h3>View <%= id %>'s profile</h3>
 	<h3>Check credentials here</h3>
+	<h2>Authentication: <%= user.access_token %></h2>
 <% else %>
 	<h2>Place table of available users here</h2>
 <% end %>
