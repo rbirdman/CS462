@@ -1,24 +1,27 @@
 
 <body>
-profile.html<br>
-Hello from Ryan!<br>
 
 <% id = params[:id] %>
 <% if id %>
 	<% user = get_user(id) %>
 	<h3>View <%= id %>'s profile</h3>
-	<h3>Check credentials here</h3>
-	<h2>Authentication: <%= user.access_token %></h2>
+	
+	<ul class="list-group">
+	<% getCheckIns().each do |item| %>
+		<li class="list-group-item"><% shout = item["shout"] %>
+		<% venue = item["venue"] %>
+		<% location = venue["location"] %>
+		
+		<%= venue["name"] %><br>
+		<%= location["address"] %> <br>
+		
+		<%= shout %> <br></li>
+	<% end %>
+	</ul>
 <% else %>
-	<h2>Place table of available users here</h2>
-<% end %>
-
-<% for num in 0..4 %>
-	<%= num %><br>
-<% end %>
-
-<% (0..5).each do |num| %>
-	<%= "Here is " + num.to_s %><br>
+	<% Users.all.each do |user| %>
+ 	 	<li><a href="/profile/<%= user.user %>"><%= user.user %></a></li>
+	<% end %>
 <% end %>
 
 </body>

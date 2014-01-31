@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
 	include SslRequirement
+	include HomeHelper
 	
 	#ssl_required :signup, :payment
     #ssl_allowed :index
@@ -32,11 +33,19 @@ class HomeController < ApplicationController
 	
     def signup
 		Rails.logger.debug "Opening Signup"
+		id = params[:id]
+		set_variables()
+		
+		if id
+			redirect_url = @home_url + "/token/" + id
+			Rails.logger.debug "Home url: " + redirect_url
+            #redirect_to @fourSquare.authorize_url(@home_url + "/token/" + id)
+			redirect_to "https://foursquare.com/oauth2/authenticate?client_id=#{@client_id}&response_type=code&redirect_uri=#{redirect_url}"
+		end
     end
     
     def login
 		Rails.logger.debug "Opening Login"
-		
 		set_variables()
 		
 		id = params[:id]
@@ -45,26 +54,13 @@ class HomeController < ApplicationController
 			user = Users.find_by user: id
 			if user
 			#if Users.exists?(id)
-				Rails.logger.debug "Setting user: " + user.user
-				Rails.logger.debug "User token: " + user.access_token
-				#reroute
+				#Rails.logger.debug "Setting user: " + user.user
+				#Rails.logger.debug "User token: " + user.access_token
 				redirect_to "/authorize/" + id
 			else
 				Rails.logger.debug "Unknown login User"
-				#authorize
-				
-				redirect_url = @home_url + "/token/" + id
-				Rails.logger.debug "Home url: " + redirect_url
-                #redirect_to @fourSquare.authorize_url(@home_url + "/token/" + id)
-				redirect_to "https://foursquare.com/oauth2/authenticate?client_id=#{@client_id}&response_type=code&redirect_uri=#{redirect_url}"
-				
-				#temp = Users.create(:user => id, :access_token => "12345")
-				#temp.save
+				redirect_to "/signup/" + id
 			end
-			
-			
-		else
-			
 		end
     end
 	
@@ -73,7 +69,6 @@ class HomeController < ApplicationController
         set_variables()
         
         if params[:code]
-        
             Rails.logger.debug "Getting token"
             Rails.logger.debug "Id: " + id
         
@@ -86,18 +81,15 @@ class HomeController < ApplicationController
 			http = Net::HTTP.new(uri.host, uri.port)
 			http.use_ssl = true
             request = Net::HTTP::Get.new(uri.request_uri)
-
 			response = http.request(request)
+			
 			access_token = response.body #this is JSON format
-            #Do I have THE token at this point?
-            Rails.logger.debug "First: " + access_token
+            Rails.logger.debug "Response: " + access_token
             access_token = JSON.parse(access_token)
-            Rails.logger.debug "Second: " + access_token["access_token"]
-		Users.create(:user => id, :access_token => access_token["access_token"]);
-		redirect_to "/authorize/" + id
-		
+			Users.create(:user => id, :access_token => access_token["access_token"]);
+			redirect_to "/authorize/" + id
         else
-		Rails.logger.debug "No id"
+			Rails.logger.debug "No code"
             redirect_to "/login"
         end
 	end
@@ -123,6 +115,11 @@ class HomeController < ApplicationController
         if user
             Rails.logger.debug "User accepted"
             #set current_user
+            #HomeHelper.set_user(id)
+            #ApplicationController.helpers.set_user(id)
+            view_context.set_user(id)
+            Rails.logger.debug "Set variable: " + view_context.current_user
+            #view_context.current_user = id
             
             redirect_to "/profile/" + id
             return
