@@ -14,6 +14,8 @@ class HomeController < ApplicationController
         @client_id = "QM50Z5KIPPBQAQ3CAB1POYS5K5P2SBIRQZBTJBGCHI0LLF4E"
         @client_secret = "BI4LKYTMWVUK1WKAX3HBKJQBZRVBNVJA1HMG10IR10EJ5SVQ"
         @home_url = "https://ec2-54-221-60-170.compute-1.amazonaws.com"
+        
+        @fourSquare = Foursquare::Merchant::Consumer.new(@client_id, @client_secret)
     end
 	
 	def home
@@ -43,9 +45,9 @@ class HomeController < ApplicationController
 			else
 				Rails.logger.debug "Unknown login User"
 				#authorize
-				@merchant = Foursquare::Merchant::Consumer.new(@client_id, @client_secret)
+				
 				Rails.logger.debug "Home url: " + @home_url
-                redirect_to @merchant.authorize_url(@home_url + "/token/" + id)
+                redirect_to @fourSquare.authorize_url(@home_url + "/token/" + id)
 				
 				#temp = Users.create(:user => id, :access_token => "12345")
 				#temp.save
@@ -59,7 +61,11 @@ class HomeController < ApplicationController
 	
 	def get_token
 		id = params[:id]
-		access_token = @merchant.access_token(params[:code], @home_url + "/authorize/"+id)
+        
+        Rails.logger.debug "Getting token"
+        Rails.logger.debug "Id: " + id
+        
+		access_token = @fourSquare.access_token(params[:code], @home_url + "/authorize/"+id)
 		#Do I have THE token at this point?
         Rails.logger.debug access_token
 	end
