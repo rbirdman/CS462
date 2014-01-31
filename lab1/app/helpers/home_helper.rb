@@ -73,6 +73,7 @@ module HomeHelper
 		
 		if array == nil
 			return []
+		end
 		
 		array
 	end
