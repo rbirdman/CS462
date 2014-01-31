@@ -71,6 +71,9 @@ module HomeHelper
 			array = array[0,1]
 		end
 		
+		if array == nil
+			return []
+		
 		array
 	end
 end
