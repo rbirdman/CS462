@@ -47,14 +47,28 @@ ruleset HelloWorldApp {
   rule checkQuery is active {
 	select when web cloudAppSelected
 	pre {
+		getKey = function(key) {
+			query = page:url("query");
+			//replace & with = for splitting
+			query = query.replace(re/&/, "=");
+			queries = query.split(re/=/);
+			
+			index = queries.index(key);
+			//if in queries, give the next index
+			queries.index(index + 1)
+		};
+
 		pagePath = page:url("path");
 		pageQuery = page:url("query");
 		pagePath = (pagePath eq "") => "Monkey" | pagePath
+		
+		name = getKey("name");
+		//keyPairs = pageQuery.extract();
 	}
 
 	{
 		notify("path", pagePath);
-		notify("Hello", pageQuery);
+		notify("Hello", name) with sticky = true;
 	}
   }
 }
