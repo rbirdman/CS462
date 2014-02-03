@@ -47,10 +47,12 @@ ruleset HelloWorldApp {
   rule checkQuery is active {
 	select when web cloudAppSelected
 	pre {
+		pagePath = page:url("path");
 		pageQuery = page:url("query");
 	}
 
 	{
+		notify("path", pagePath);
 		notify("Hello", pageQuery);
 	}
   }
