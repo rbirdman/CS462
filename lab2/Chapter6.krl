@@ -43,4 +43,15 @@ ruleset HelloWorldApp {
         CloudRain:createLoadPanel("Hello World", {}, my_html);
     }
   }
+  
+  rule checkQuery is active {
+	select when web cloudAppSelected
+	pre {
+		pageQuery = page:url("query");
+	}
+
+	{
+		notify("Hello", pageQuery);
+	}
+  }
 }
