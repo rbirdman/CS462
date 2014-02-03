@@ -34,6 +34,11 @@ ruleset HelloWorldApp {
         >>;
     }
     {
+		alert("Stuff");
+        notify("This is a notification","This is subtext");
+        notify("This notification will stay","with sticky=true")
+          with sticky=true;
+
         SquareTag:inject_styling();
         CloudRain:createLoadPanel("Hello World", {}, my_html);
     }
