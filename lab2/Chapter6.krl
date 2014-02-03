@@ -22,8 +22,8 @@ ruleset HelloWorldApp {
   }
   
   rule heroku is active {
-	select when pageview ".*"
-	notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
+	 select when pageview ".*"
+	 notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
   }
   
   rule HelloWorld is active {
@@ -45,31 +45,30 @@ ruleset HelloWorldApp {
   }
   
   rule checkQuery is active {
-	select when web cloudAppSelected
-	pre {
-		getKey = function(key) {
-			query = page:url("query");
-			//replace & with = for splitting
-			query = query.replace(re/&/, "=");
-			queries = query.split(re/=/);
+	 select when web cloudAppSelected
+	 pre {
+		  getKey = function(key) {
+			 query = page:url("query");
+			 //replace & with = for splitting
+			 query = query.replace(re/&/, "=");
+			 queries = query.split(re/=/);
 			
-			index = queries.index(key);
-			//if in queries, give the next index
-			queries.index(index + 1)
-		};
+			 index = queries.index(key);
+			 queries.index(index + 1)
+		  };
 
-		pagePath = page:url("path");
-		pageQuery = page:url("query");
-		pagePath = (pagePath eq "") => "Monkey" | pagePath
+		  pagePath = page:url("path");
+		  pageQuery = page:url("query");
+		  pagePath = (pagePath eq "") => "Monkey" | pagePath;
 		
-		name = "monkey"
-		//name = getKey("name");
-		//keyPairs = pageQuery.extract();
-	}
+		  name = "monkey";
+		  //name = getKey("name");
+		  //keyPairs = pageQuery.extract();
+	 }
 
-	{
-		notify("path", pagePath);
-		notify("Hello", name) with sticky = true;
-	}
+	 {
+		  notify("path", pagePath);
+		  notify("Hello", name) with sticky = true;
+	 }
   }
 }
