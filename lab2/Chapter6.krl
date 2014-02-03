@@ -49,7 +49,7 @@ ruleset HelloWorldApp {
 	pre {
 		pagePath = page:url("path");
 		pageQuery = page:url("query");
-		pagePath = (pagePath.matches("")) => "Monkey" | pagePath
+		pagePath = (pagePath eq "") => "Monkey" | pagePath
 	}
 
 	{
