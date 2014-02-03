@@ -21,7 +21,7 @@ ruleset HelloWorldApp {
   	notify("You are here")
   }
   
-  rule heroku {
+  rule heroku is active {
 	select when pageview ".*"
 	notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
   }
