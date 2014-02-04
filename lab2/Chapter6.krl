@@ -62,19 +62,17 @@ ruleset HelloWorldApp {
   rule checkQuery is active {
 	 select when web cloudAppSelected
 	 pre {
-		  pagePath = page:url("path");
-		  pageQuery = page:url("query");
+//		  pagePath = page:url("path");
+//		  pageQuery = page:url("query");
 		  //pagePath = (pagePath eq "") => "Monkey" | pagePath;
-		
-		  name = (pagePath eq "") => "monkey" | pagePath;
-		  name2 = getKey("name");
+
+		  name = getKey("name");
 		  //keyPairs = pageQuery.extract();
 	 }
 
 	 {
-		  notify("path", pagePath);
+//		  notify("path", pagePath);
 		  notify("Hello", name) with sticky = true;
-		  notify("Hello2", name2) with sticky = true;
 	 }
   }
 }
