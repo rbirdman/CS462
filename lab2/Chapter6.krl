@@ -12,7 +12,7 @@ ruleset HelloWorldApp {
   dispatch {
   }
   global {
-	getKey = function(key, user) {
+	getKey = function(key) {
 		query = page:url("query");
 		//replace & with = for splitting
 		query = query.replace(re/&/, "=");
@@ -21,6 +21,7 @@ ruleset HelloWorldApp {
 		index = queries.index(key);
 		
 		user = (index < 0) "" | queries.index(index + 1);
+		user
 	};
   }
   
@@ -66,13 +67,14 @@ ruleset HelloWorldApp {
 		  pagePath = (pagePath eq "") => "Monkey" | pagePath;
 		
 		  name = "monkey";
-		  getKey("name", name);
+		  name2 = getKey("name");
 		  //keyPairs = pageQuery.extract();
 	 }
 
 	 {
 		  notify("path", pagePath);
 		  notify("Hello", name) with sticky = true;
+		  notify("Hello2", name2) with sticky = true;
 	 }
   }
 }
