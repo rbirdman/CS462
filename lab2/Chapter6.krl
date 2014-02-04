@@ -32,8 +32,18 @@ ruleset HelloWorldApp {
   	notify("You are here")
   }
   
-  rule heroku is active {
+  rule heroku {
 	 select when pageview ".*"
+	 pre {
+	 }
+	 {
+		alert("You are entering Heroku territory");
+		notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
+	 }
+  }
+  
+  rule herokuURL is active {
+	 select when pageview url re#ktest.heroku.com#
 	 pre {
 	 }
 	 {
