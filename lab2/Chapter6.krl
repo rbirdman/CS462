@@ -90,10 +90,11 @@ ruleset HelloWorldApp {
       containsClear = page:url("query").index("clear") >= 0;
     }
     if containsClear then {
-      clear ent:count();
+      notify("Cleared Count", "Happily");
+      //clear ent:count;
     }
     fired {
-      notify("Cleared Count", "Happily");
+      clear ent:count;
     }
   }
 }
