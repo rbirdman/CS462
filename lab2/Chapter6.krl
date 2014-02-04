@@ -18,10 +18,10 @@ ruleset HelloWorldApp {
 		queries = query.split(re/=/);
 		index = queries.index(key);
 
-//		user = (index < 0) => "Monkey" | queries.index(index + 1);
-//		user
 //		key + " temp val"
-		(index < 0) => "Monkey" | queries.index(index + 1)
+		notify(key,index);
+		user = (index < 0) => "Monkey" | queries.index(index + 1);
+		user
 	};
   }
   
