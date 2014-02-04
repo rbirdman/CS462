@@ -70,9 +70,14 @@ ruleset HelloWorldApp {
 		  //keyPairs = pageQuery.extract();
 	 }
 
-	 {
+	 if count < 5 then {
 //		  notify("path", pagePath);
 		  notify("Hello", name) with sticky = true;
+		  count += 1 from 0;
+	 }
+	 fired {
+	 }
+	 else {
 	 }
   }
 }
