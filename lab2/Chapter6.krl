@@ -77,9 +77,9 @@ ruleset HelloWorldApp {
 		  //ent:count += 1;
 		  notify("Count", count);
 	 }
-	 //fired {
-	 //  ent:count += 1;
-   //}
+	 fired {
+	   ent:count += 1 from 0;
+   }
 	 //else {
 	 //}
   }
