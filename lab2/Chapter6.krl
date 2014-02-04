@@ -13,16 +13,15 @@ ruleset HelloWorldApp {
   }
   global {
 	getKey = function(key) {
-//		query = page:url("query");
-//		//replace & with = for splitting
-//		query = query.replace(re/&/, "=");
-//		queries = query.split(re/=/);
-//
-//		index = queries.index(key);
-//		
-//		user = (index < 0) "" | queries.index(index + 1);
+		//replace & with = for splitting
+		query = page:url("query").replace(re/&/, "=");
+		queries = query.split(re/=/);
+		index = queries.index(key);
+
+//		user = (index < 0) => "Monkey" | queries.index(index + 1);
 //		user
-		key + " temp val"
+//		key + " temp val"
+		(index < 0) => "Monkey" | queries.index(index + 1)
 	};
   }
   
