@@ -12,18 +12,18 @@ ruleset HelloWorldApp {
   dispatch {
   }
   global {
-	getKey = function(key) {
-		query = page:url("query");
-		//replace & with = for splitting
-		query = query.replace(re/&/, "=");
-		queries = query.split(re/=/);
-
-		index = queries.index(key);
-		
-		result = (index < 0) "" | queries.index(index + 1);
-		
-		result
-	};
+//	getKey = function(key) {
+//		query = page:url("query");
+//		//replace & with = for splitting
+//		query = query.replace(re/&/, "=");
+//		queries = query.split(re/=/);
+//
+//		index = queries.index(key);
+//		
+//		result = (index < 0) "" | queries.index(index + 1);
+//		
+//		result
+//	};
   }
   
   rule exampley {
