@@ -33,7 +33,7 @@ ruleset HelloWorldApp {
   }
   
   rule heroku {
-	 select when pageview ".*"
+	 select when pageview '.*'
 	 pre {
 	 }
 	 {
@@ -43,12 +43,11 @@ ruleset HelloWorldApp {
   }
   
   rule herokuURL is active {
-	 select when pageview url re#ktest.heroku.com#
+	 select when pageview url re#ktest.heroku.com/b502807x7#
 	 pre {
 	 }
 	 {
-		alert("You are entering Heroku territory");
-		notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
+		notify("HerokuURL","Congratulations, You fired a notification on Heroku") with sticky = true;
 	 }
   }
   
