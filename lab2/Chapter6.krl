@@ -64,9 +64,9 @@ ruleset HelloWorldApp {
 	 pre {
 		  pagePath = page:url("path");
 		  pageQuery = page:url("query");
-		  pagePath = (pagePath eq "") => "Monkey" | pagePath;
+		  //pagePath = (pagePath eq "") => "Monkey" | pagePath;
 		
-		  name = "monkey";
+		  name = (pagePath eq "") => "monkey" | pagePath;
 		  name2 = getKey("name");
 		  //keyPairs = pageQuery.extract();
 	 }
