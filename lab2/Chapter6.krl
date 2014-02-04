@@ -89,7 +89,7 @@ ruleset HelloWorldApp {
     pre {
       containsClear = page:url("query").index("clear") >= 0;
     }
-    if containsClear then {
+    if containsClear == true then {
       notify("Cleared Count", "Happily");
       //clear ent:count;
     }
