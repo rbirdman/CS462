@@ -34,6 +34,7 @@ ruleset HelloWorldApp {
   
   rule heroku is active {
 	 select when pageview ".*"
+	 alert("You are entering Heroku territory");
 	 notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
   }
   
