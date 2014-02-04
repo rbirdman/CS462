@@ -67,18 +67,20 @@ ruleset HelloWorldApp {
 		  //pagePath = (pagePath eq "") => "Monkey" | pagePath;
 
 		  name = getKey("name");
+      count = ent:count;
 		  //keyPairs = pageQuery.extract();
 	 }
 
-	 if count < 5 then {
+	 if ent:count < 5 then {
 //		  notify("path", pagePath);
 		  notify("Hello", name) with sticky = true;
-		  count += 1 from 0;
+		  //ent:count += 1;
 		  notify("Count", count);
 	 }
-	 fired {
-	 }
-	 else {
-	 }
+	 //fired {
+	 //  ent:count += 1;
+   //}
+	 //else {
+	 //}
   }
 }
