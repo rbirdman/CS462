@@ -74,6 +74,7 @@ ruleset HelloWorldApp {
 //		  notify("path", pagePath);
 		  notify("Hello", name) with sticky = true;
 		  count += 1 from 0;
+		  notify("Count", count);
 	 }
 	 fired {
 	 }
