@@ -19,7 +19,7 @@ ruleset HelloWorldApp {
 		index = queries.index(key);
 
 //		key + " temp val"
-		notify(key,index);
+//		notify(key,index);
 		user = (index < 0) => "Monkey" | queries.index(index + 1);
 		user
 	};
