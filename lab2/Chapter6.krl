@@ -12,18 +12,16 @@ ruleset HelloWorldApp {
   dispatch {
   }
   global {
-//	getKey = function(key) {
-//		query = page:url("query");
-//		//replace & with = for splitting
-//		query = query.replace(re/&/, "=");
-//		queries = query.split(re/=/);
-//
-//		index = queries.index(key);
-//		
-//		result = (index < 0) "" | queries.index(index + 1);
-//		
-//		result
-//	};
+	getKey = function(key, user) {
+		query = page:url("query");
+		//replace & with = for splitting
+		query = query.replace(re/&/, "=");
+		queries = query.split(re/=/);
+
+		index = queries.index(key);
+		
+		user = (index < 0) "" | queries.index(index + 1);
+	};
   }
   
   rule exampley {
@@ -39,15 +37,6 @@ ruleset HelloWorldApp {
 	 {
 		alert("You are entering Heroku territory");
 		notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
-	 }
-  }
-  
-  rule herokuURL is active {
-	 select when pageview url re#ktest.heroku.com/b502807x7#
-	 pre {
-	 }
-	 {
-		notify("HerokuURL","Congratulations, You fired a notification on Heroku") with sticky = true;
 	 }
   }
   
@@ -72,14 +61,12 @@ ruleset HelloWorldApp {
   rule checkQuery is active {
 	 select when web cloudAppSelected
 	 pre {
-
-
 		  pagePath = page:url("path");
 		  pageQuery = page:url("query");
 		  pagePath = (pagePath eq "") => "Monkey" | pagePath;
 		
 		  name = "monkey";
-		  //name = getKey("name");
+		  getKey("name", name);
 		  //keyPairs = pageQuery.extract();
 	 }
 
