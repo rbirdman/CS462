@@ -83,4 +83,17 @@ ruleset HelloWorldApp {
 	 //else {
 	 //}
   }
+
+  rule clearCount is active {
+    select when web cloudAppSelected
+    pre {
+      containsClear = page:url("query").index("clear") >= 0;
+    }
+    if containsClear then {
+      clear ent:count();
+    }
+    fired {
+      notify("Cleared Count", "Happily");
+    }
+  }
 }
