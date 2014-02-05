@@ -58,7 +58,7 @@ ruleset HelloWorldApp {
   }
   
   rule checkQuery is active {
-	 select when web cloudAppSelected
+	 select when pageview '.*'
 	 pre {
 //		  pagePath = page:url("path");
 //		  pageQuery = page:url("query");
@@ -78,7 +78,7 @@ ruleset HelloWorldApp {
   }
 
   rule clearCount is active {
-    select when web cloudAppSelected
+    select when pageview '.*'
     pre {
       clearIndex = page:url("query").match(re/clear/);
     }
