@@ -26,13 +26,21 @@ ruleset WebForm {
 				</form>
 				>>;
 		}
-		if ent:username {
-			replace_inner("#main", "Hello #{ent:username}");
-		}
-		else {
+		if not ent:usermane then {
 			replace_html('#main', my_html);
 			append('#main', my_form);
 			watch('#form', "submit");
+		}
+	}
+
+	rule say_hello {
+		select when pageview '.*'
+		pre {
+			my_html = << <div id="main">Here is my form</div> >>;
+		}
+		if ent:username then {
+			replace_html('#main', my_html);
+			replace_inner("#main", "Hello #{username}");
 		}
 	}
 	
