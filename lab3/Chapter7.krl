@@ -41,8 +41,8 @@ ruleset WebForm {
 		}
 		if ent:username neq 0 then {
 			replace_html('#main', my_html);
-			replace_inner("#main", "Hello #{username}");
-			notify("Hello", username);
+			replace_inner("#main", "Hello #{ent:username}");
+			notify("Hello", ent:username);
 		}
 	}
 	
