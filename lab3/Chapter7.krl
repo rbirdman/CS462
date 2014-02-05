@@ -36,11 +36,17 @@ ruleset WebForm {
 	rule respond_submit {
 		select when web submit "#form"
 		pre {
-			username = event:attr("first") + " " + event:attr("last");
+			firstname = event:attr("first");
+			lastname = event:attr("last");
+			username = firstname + " " + lastname;
 		}
 		replace_inner("#main", "Hello #{username}");
 		fired {
 			set ent:username username;
+			set ent:firstname firstname;
+			set ent:lastname lastname;
+		}
+	}
 		}
 	}
 }
