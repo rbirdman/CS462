@@ -26,7 +26,10 @@ ruleset WebForm {
 				</form>
 				>>;
 		}
-		{
+		if ent:username {
+			replace_inner("#main", "Hello #{ent:username}");
+		}
+		else {
 			replace_html('#main', my_html);
 			append('#main', my_form);
 			watch('#form', "submit");
