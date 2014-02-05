@@ -50,6 +50,13 @@ ruleset WebForm {
 			set ent:lastname lastname;
 		}
 	}
+	
+	rule clear_name {
+		select when pageview re#\?clear=1#
+		always {
+			clear ent:username;
+			clear ent:firstname;
+			clear ent:lastname;
 		}
 	}
 }
