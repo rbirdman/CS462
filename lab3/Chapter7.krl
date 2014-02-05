@@ -29,7 +29,18 @@ ruleset WebForm {
 		{
 			replace_html('#main', my_html);
 			append('#main', my_form);
+			watch('#form', "submit");
 		}
-		
+	}
+	
+	rule respond_submit {
+		select when web submit "#form"
+		pre {
+			username = event:attr("first") + " " + event:attr("last");
+		}
+		replace_inner("#main", "Hello #{username}");
+		fired {
+			set ent:username username;
+		}
 	}
 }
