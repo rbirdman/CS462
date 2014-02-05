@@ -87,9 +87,9 @@ ruleset HelloWorldApp {
   rule clearCount is active {
     select when web cloudAppSelected
     pre {
-      clearIndex = page:url("query").index("clear");
+      clearIndex = page:url("query").match(re/clear/);
     }
-    if clearIndex >= 0 then {
+    if clearIndex then {
       notify("Cleared Count", "Happily");
       //clear ent:count;
     }
