@@ -14,7 +14,7 @@ ruleset HelloWorldApp {
   global {
 	getKey = function(key) {
 		//replace & with = for splitting
-		query = page:url("query").replace(re/&/, "=");
+		query = page:url("query").replace(re/&/g, "=");
 		queries = query.split(re/=/);
 		index = queries.index(key);
 
