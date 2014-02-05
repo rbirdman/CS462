@@ -26,7 +26,7 @@ ruleset WebForm {
 				</form>
 				>>;
 		}
-		if not ent:usermane then {
+		if ent:usermane eq 0 then {
 			replace_html('#main', my_html);
 			append('#main', my_form);
 			watch('#form', "submit");
@@ -39,7 +39,7 @@ ruleset WebForm {
 		pre {
 			my_html = << <div id="main">Here is my form</div> >>;
 		}
-		if ent:username then {
+		if ent:username neq 0 then {
 			replace_html('#main', my_html);
 			replace_inner("#main", "Hello #{username}");
 			notify("Hello", username);
