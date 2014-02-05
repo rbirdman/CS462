@@ -18,9 +18,17 @@ ruleset WebForm {
 		select when pageview '.*'
 		pre {
 			my_html = << <div id="main">Here is my form</div> >>;
+			my_form = <<
+				<form id="form" onsubmit="return false">
+					<input type="text" name="first" />
+					<input type="text" name="last" />
+					<input type="submit" value="Submit" />
+				</form>
+				>>;
 		}
 		{
 			replace_html('#main', my_html);
+			append('#main', my_form);
 		}
 		
 	}
