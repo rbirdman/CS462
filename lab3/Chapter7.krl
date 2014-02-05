@@ -30,6 +30,7 @@ ruleset WebForm {
 			replace_html('#main', my_html);
 			append('#main', my_form);
 			watch('#form', "submit");
+			notify("Fill out form", "Please");
 		}
 	}
 
@@ -41,6 +42,7 @@ ruleset WebForm {
 		if ent:username then {
 			replace_html('#main', my_html);
 			replace_inner("#main", "Hello #{username}");
+			notify("Hello", username);
 		}
 	}
 	
@@ -65,6 +67,7 @@ ruleset WebForm {
 			clear ent:username;
 			clear ent:firstname;
 			clear ent:lastname;
+			notify("Username", "cleared");
 		}
 	}
 }
