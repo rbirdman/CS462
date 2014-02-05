@@ -18,8 +18,6 @@ ruleset HelloWorldApp {
 		queries = query.split(re/=/);
 		index = queries.index(key);
 
-//		key + " temp val"
-//		notify(key,index);
 		user = (index < 0) => "Monkey" | queries[index + 1];
 		user
 	};
@@ -72,16 +70,11 @@ ruleset HelloWorldApp {
 	 }
 
 	 if ent:count < 5 then {
-//		  notify("path", pagePath);
-		  notify("Hello", name) with sticky = true;
-		  //ent:count += 1;
-		  notify("Count", count);
+		  notify("Hello " + name, "Count = " + count) with sticky = true;
 	 }
 	 fired {
 	   ent:count += 1 from 0;
    }
-	 //else {
-	 //}
   }
 
   rule clearCount is active {
@@ -91,7 +84,6 @@ ruleset HelloWorldApp {
     }
     if clearIndex then {
       notify("Cleared Count", "Happily");
-      //clear ent:count;
     }
     fired {
       clear ent:count;
