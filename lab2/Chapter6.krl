@@ -57,6 +57,19 @@ ruleset HelloWorldApp {
     }
   }
   
+  rule clearCount is active {
+    select when pageview '.*'
+    pre {
+      clearIndex = page:url("query").match(re/clear/);
+    }
+    if clearIndex then {
+      notify("Cleared Count", "Happily");
+    }
+    fired {
+      clear ent:count;
+    }
+  }
+  
   rule checkQuery is active {
 	 select when pageview '.*'
 	 pre {
@@ -77,16 +90,4 @@ ruleset HelloWorldApp {
    }
   }
 
-  rule clearCount is active {
-    select when pageview '.*'
-    pre {
-      clearIndex = page:url("query").match(re/clear/);
-    }
-    if clearIndex then {
-      notify("Cleared Count", "Happily");
-    }
-    fired {
-      clear ent:count;
-    }
-  }
 }
