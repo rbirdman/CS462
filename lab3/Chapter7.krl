@@ -63,11 +63,12 @@ ruleset WebForm {
 	
 	rule clear_name {
 		select when pageview re#\?clear=1#
+
+		notify("Username", "cleared")
 		always {
 			clear ent:username;
 			clear ent:firstname;
 			clear ent:lastname;
-			notify("Username", "cleared");
 		}
 	}
 }
