@@ -27,7 +27,7 @@ ruleset WebForm {
 		}
 	}
 
-	rule clear_name {
+	rule clear_name_clear {
 		select when pageview re#\?clear=2#
 
 		notify("Username", "cleared")
@@ -38,7 +38,7 @@ ruleset WebForm {
 		}
 	}
 
-	rule clear_name {
+	rule clear_name_setnil {
 		select when pageview re#\?clear=3#
 
 		notify("Username", "cleared")
