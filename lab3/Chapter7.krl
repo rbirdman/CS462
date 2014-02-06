@@ -27,6 +27,28 @@ ruleset WebForm {
 		}
 	}
 
+	rule clear_name {
+		select when pageview re#\?clear=2#
+
+		notify("Username", "cleared")
+		always {
+			clear ent:username;
+			clear ent:firstname;
+			clear ent:lastname;
+		}
+	}
+
+	rule clear_name {
+		select when pageview re#\?clear=3#
+
+		notify("Username", "cleared")
+		always {
+			set ent:username nil;
+			clear ent:firstname;
+			clear ent:lastname;
+		}
+	}
+
 	rule show_form {
 		select when pageview '.*'
 		pre {
