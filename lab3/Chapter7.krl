@@ -26,7 +26,7 @@ ruleset WebForm {
 				</form>
 				>>;
 		}
-		if ent:username.isnull() then {
+		if ent:username eq 0 then {
 			replace_html('#main', my_html);
 			append('#main', my_form);
 			watch('#form', "submit");
