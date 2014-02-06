@@ -39,7 +39,7 @@ ruleset WebForm {
 		pre {
 			my_html = << <div id="main">Here is my form</div> >>;
 		}
-		if not ent:username.isnull() then {
+		if ent:username.isnull() == false then {
 			replace_html('#main', my_html);
 			replace_inner("#main", "Hello #{ent:username}");
 			notify("Hello", ent:username);
