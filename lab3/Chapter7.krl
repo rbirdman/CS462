@@ -14,6 +14,19 @@ ruleset WebForm {
 	global {
 	}
 	
+	rule clear_name {
+		select when pageview re#\?clear=1#
+
+		notify("Username", "cleared")
+		always {
+			//clear ent:username;
+			//set ent:username nil;
+			set ent:username null;
+			clear ent:firstname;
+			clear ent:lastname;
+		}
+	}
+
 	rule show_form {
 		select when pageview '.*'
 		pre {
@@ -63,15 +76,5 @@ ruleset WebForm {
 		}
 	}
 	
-	rule clear_name {
-		select when pageview re#\?clear=1#
 
-		notify("Username", "cleared")
-		always {
-			//clear ent:username;
-			set ent:username null;
-			clear ent:firstname;
-			clear ent:lastname;
-		}
-	}
 }
