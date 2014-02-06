@@ -68,7 +68,8 @@ ruleset WebForm {
 
 		notify("Username", "cleared")
 		always {
-			clear ent:username;
+			//clear ent:username;
+			set ent:username nil;
 			clear ent:firstname;
 			clear ent:lastname;
 		}
