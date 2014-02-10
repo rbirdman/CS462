@@ -138,7 +138,10 @@ class HomeController < ApplicationController
 		Rails.logger.debug "Logging out"
 		view_context.clear_user()
 		val = view_context.current_user
-		if val != "" or val != nil
+		if val != nil or val != ""
+			if val == nil
+				val = "nil"
+			end
 			Rails.logger.error "Logout failure: still logged as " + val
 		else
 			Rails.logger.debug "Logout successful"

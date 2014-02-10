@@ -1,19 +1,22 @@
 module HomeHelper
 	#$current_user = nil
 	
-	@@current_user = ""
+	#@@current_user = ""
 	def current_user
-		@@current_user
+		#@@current_user
+		cookies[:current_user]
 	end
 	
 	def current_user=(user)
-		@@current_user=user
+		#@@current_user=user
+		cookies[:current_user] = user
 	end
 	
 	def set_user(user)
 		#Client.where(first_name: 'Lifo')
 		Rails.logger.debug "Setting user to: " + user
-		@@current_user = user
+		#@@current_user = user
+		cookies[:current_user] = user
 	end
 	
 	def get_user(id)
@@ -23,7 +26,8 @@ module HomeHelper
 	end
 	
 	def clear_user()
-		@@current_user = ""
+		#@@current_user = ""
+		cookies.delete :current_user
 	end
 	
 	def requestHTTPS(uri, args)
@@ -67,7 +71,7 @@ module HomeHelper
 		array = requestCheckins()
 		#requestCheckins()
 		#requestUserlessCheckin()
-		if current_user == nil or current_user != params[:id]
+		if current_user() == nil or current_user() != params[:id]
 			array = array[0,1]
 		end
 		
