@@ -20,6 +20,15 @@ ruleset rotten_tomatoes {
 						body = result.pick("$.content");;
 						body
 					}
+		//http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
+		getMovieData = function(title) {
+					result =  http:get("http://api.rottentomatoes.com/api/public/v1.0.json",
+								{"apikey":key, "q":title.replace(re/ /g, "+"), "page_limit": 1});
+					body = result.pick("$.content");
+					movieArray = body.pick("$.movies");
+					movie = movieArray[0];
+					movie
+				}
 	}
 	
 	
