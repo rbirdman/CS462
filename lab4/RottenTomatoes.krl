@@ -92,11 +92,11 @@ ruleset rotten_tomatoes {
 			replace_inner("#movieInfo", "#{displayHTML}");
 			
 			replace_inner("#movie_title", "#{title}");
-			replace_inner("#release_date", "#{release_date}");
-			replace_inner("#thumbnail", "#{thumbnail}");
-			replace_inner("#synopsis", "#{synopsis}");
-			replace_inner("#ratings", "#{criticRatings}");
-			replace_inner("#mpaaRating", "#{movieRating}");
+			replace_inner("#release_date", "Released: #{release_date}");
+			replace_html("#thumbnail", "<img id=thumbnail src=#{thumbnail}/>");
+			replace_inner("#synopsis", "Synopsis: #{synopsis}");
+			replace_inner("#ratings", "#{criticRatings.as("str")}");
+			replace_inner("#mpaaRating", "Rated: #{movieRating}");
 		}
 		//throw event with title = title
 	}
