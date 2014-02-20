@@ -74,7 +74,7 @@ ruleset rotten_tomatoes {
 			title = movieData.pick("$.title");
 			synopsis = movieData.pick("$..synopsis");
 			release_date = movieData.pick("$..release_dates.theater");
-			criticRatings = movieData.pick("$..ratings").as("str");
+			criticRatings = movieData.pick("$..ratings");
 			thumbnail = movieData.pick("$..posters.thumbnail");
 			
 			critic_rating = criticRatings.pick("$.critic_rating").as("str");
