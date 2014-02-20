@@ -64,6 +64,18 @@ ruleset rotten_tomatoes {
 	rule obtain_rating {
 		select when web submit "#form"
 		pre {
+			
+		}
+		{
+			
+		}
+		//throw event with title = title
+	}
+	
+	rule display_rating {
+		//select explicit event thrown by obtain_rating
+		select when web submit "#form"
+		pre {
 			title = event:attr("title");
 		}
 		{
