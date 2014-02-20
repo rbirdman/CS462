@@ -115,20 +115,13 @@ ruleset rotten_tomatoes {
 					<p id=mpaaRating></p>
 				>>;
 		}
-		{
+		if movieDataString then {
 //			replace_inner("#movieInfo", "Movie Data: #{movieDataString} <br>Movie Title: #{title}<br>Synopsis: #{synopsis}");
 			replace_inner("#movieInfo", "#{displayHTML}");
 			
 			replace_inner("#movie_title", "#{title}");
 			replace_inner("#release_date", "Released: #{release_date}");
-//			replace_html("#thumbnail", "<img id=thumbnail src=#{thumbnail}/>");
 			replace_inner("#synopsis", "Synopsis: #{synopsis}");
-//			replace_inner("#ratings", "#{criticRatings.as("str")}");
-		
-//			replace_inner("#critic_rating, "#{critic_rating}");
-//			replace_inner("#audience_rating, "#{audience_rating}");
-//			replace_inner("#critic_score, "#{critic_score}");
-//			replace_inner("#audience_score, "#{audience_score}");
 			
 			replace_inner("#concensus", "Critics Consensus: #{critics_consensus}");
 			replace_inner("#mpaaRating", "Rated: #{movieRating}");
