@@ -63,7 +63,7 @@ ruleset rotten_tomatoes {
 			title = event:attr("title");
 		}
 		{
-			notify("Movie title", title) with sticky = true;
+			notify("Movie title", title);
 		}
 	}
 	
