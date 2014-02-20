@@ -77,9 +77,9 @@ ruleset rotten_tomatoes {
 			criticRatings = movieData.pick("$..ratings");
 			thumbnail = movieData.pick("$..posters.thumbnail");
 			
-			critic_rating = criticRatings.pick("$.critic_rating").as("str");
+			critic_rating = criticRatings.pick("$.critics_rating").as("str");
 			audience_rating = criticRatings.pick("$.audience_rating").as("str");
-			critic_score = criticRatings.pick("$.critic_score").as("str");
+			critic_score = criticRatings.pick("$.critics_score").as("str");
 			audience_score = criticRatings.pick("$.audience_score").as("str");
 			
 			movieRating = movieData.pick("$..mpaa_rating");
