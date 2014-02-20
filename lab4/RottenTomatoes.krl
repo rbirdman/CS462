@@ -99,13 +99,13 @@ ruleset rotten_tomatoes {
 					</tr>
 					<tr>
 						<td>Rating</td>
-						<td id=critic_rating></td> 
-						<td id=audience_rating></td>
+						<td id=critic_rating>#{critic_rating}</td> 
+						<td id=audience_rating>#{audience_rating}</td>
 					</tr>
 					<tr>
 						<td>Score</td>
-						<td id=critic_score></td> 
-						<td id=audience_score></td>
+						<td id=critic_score>#{critic_score}</td> 
+						<td id=audience_score>#{audience_score}</td>
 					</tr>
 					</table>
 					
@@ -123,10 +123,10 @@ ruleset rotten_tomatoes {
 			replace_inner("#synopsis", "Synopsis: #{synopsis}");
 //			replace_inner("#ratings", "#{criticRatings.as("str")}");
 		
-			replace_inner("#critic_rating, "#{critic_rating}");
-			replace_inner("#audience_rating, "#{audience_rating}");
-			replace_inner("#critic_score, "#{critic_score}");
-			replace_inner("#audience_score, "#{audience_score}");
+//			replace_inner("#critic_rating, "#{critic_rating}");
+//			replace_inner("#audience_rating, "#{audience_rating}");
+//			replace_inner("#critic_score, "#{critic_score}");
+//			replace_inner("#audience_score, "#{audience_score}");
 
 			replace_inner("#mpaaRating", "Rated: #{movieRating}");
 		}
