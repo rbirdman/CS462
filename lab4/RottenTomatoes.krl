@@ -25,12 +25,12 @@ ruleset rotten_tomatoes {
 					result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
 								{"apikey":key, "q":title.replace(re/ /g, "+"), "page_limit": 1});
 					result
-//					body = result.pick("$.content");
+					body = result.pick("$.content").decode();
 //					body
-//					movieArray = body.pick("$.movies");
+					movieArray = body.pick("$.movies");
 //					movieArray
-//					movie = movieArray[0];
-//					movie
+					movie = movieArray[0];
+					movie
 				}
 	}
 	
@@ -67,17 +67,17 @@ ruleset rotten_tomatoes {
 	rule obtain_rating {
 		select when web submit "#form"
 		pre {
-			result = getMovieData(event:attr("title"));
-			resultString = result.as("str");
-			movieData = result.pick("$.content").decode();
-//			movieData = getMovieData(event:attr("title"));
-//			type = result.typeof(); //result is a hash
-			movieArray = movieData.pick("$..movies").as("str");
-			total = movieData.pick("$.total").as("str");
-			synopsis = movieData.pick("$..synopsis").as("str");
+//			result = getMovieData(event:attr("title"));
+//			resultString = result.as("str");
+//			movieData = result.pick("$.content").decode();
+			movieData = getMovieData(event:attr("title"));
+//			movieArray = movieData.pick("$..movies").as("str");
+//			total = movieData.pick("$.total").as("str");
+			title = movieData.pick($.title);
+			synopsis = movieData.pick("$..synopsis");
 		}
 		{
-			replace_inner("#movieInfo", "HTTP Response: #{resultString}<br>JSON Response #{type}: #{movieData}<br>MovieArray: #{movieArray}<br>Total: #{total}<br>Synopsis: #{synopsis}");
+			replace_inner("#movieInfo", "Movie Title: #{title}<br>Total: #{total}<br>Synopsis: #{synopsis}");
 		}
 		//throw event with title = title
 	}
