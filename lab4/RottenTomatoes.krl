@@ -118,7 +118,6 @@ ruleset rotten_tomatoes {
 			
 			replace_inner("#movie_title", "#{title}");
 			replace_inner("#release_date", "Released: #{release_date}");
-			notify("img src", "#{thumbnail}") with sticky=true;
 //			replace_html("#thumbnail", "<img id=thumbnail src=#{thumbnail}/>");
 			replace_inner("#synopsis", "Synopsis: #{synopsis}");
 //			replace_inner("#ratings", "#{criticRatings.as("str")}");
