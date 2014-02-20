@@ -95,18 +95,18 @@ ruleset rotten_tomatoes {
 					<table>
 					<tr>
 						<td width=25px></td>
-						<td width=75px>Critics</td> 
-						<td width=75px>Audience</td>
+						<td width=75px align="center">Critics</td> 
+						<td width=75px align="center">Audience</td>
 					</tr>
 					<tr>
 						<td>Rating</td>
-						<td id=critic_rating>#{critic_rating}</td> 
-						<td id=audience_rating>#{audience_rating}</td>
+						<td id=critic_rating align="center">#{critic_rating}</td> 
+						<td id=audience_rating align="center">#{audience_rating}</td>
 					</tr>
 					<tr>
 						<td>Score</td>
-						<td id=critic_score>#{critic_score}</td> 
-						<td id=audience_score>#{audience_score}</td>
+						<td id=critic_score align="center">#{critic_score}</td> 
+						<td id=audience_score align="center">#{audience_score}</td>
 					</tr>
 					</table>
 					
