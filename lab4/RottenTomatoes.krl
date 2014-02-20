@@ -68,6 +68,7 @@ ruleset rotten_tomatoes {
 		select when web submit "#form"
 		pre {
 			result = getMovieData(event:attr("title"));
+			resultString = result.as("str");
 			movieData = result.pick("$.content");
 //			movieData = getMovieData(event:attr("title"));
 //			type = result.typeof(); //result is a hash
@@ -76,7 +77,7 @@ ruleset rotten_tomatoes {
 			synopsis = result.pick("$..synopsis").as("str");
 		}
 		{
-			replace_inner("#movieInfo", "JSON Response #{type}: #{movieData}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsis}");
+			replace_inner("#movieInfo", "HTTP Response: #{resultString}<br>JSON Response #{type}: #{movieData}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsis}");
 		}
 		//throw event with title = title
 	}
