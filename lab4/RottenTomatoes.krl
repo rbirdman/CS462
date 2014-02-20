@@ -65,9 +65,10 @@ ruleset rotten_tomatoes {
 		select when web submit "#form"
 		pre {
 			movieData = getMovieData(event:attr("title"));
+			response = movieData.as("str);
 		}
 		{
-			replace_inner("#movieInfo", "JSON Response: #{movieData}");
+			replace_inner("#movieInfo", "JSON Response: #{response}");
 		}
 		//throw event with title = title
 	}
