@@ -82,7 +82,6 @@ ruleset rotten_tomatoes {
 			critic_score = criticRatings.pick("$.critic_score");
 			audience_score = criticRatings.pick("$.audience_score");
 			
-			
 			movieRating = movieData.pick("$..mpaa_rating");
 			
 			displayHTML = <<
@@ -123,7 +122,12 @@ ruleset rotten_tomatoes {
 //			replace_html("#thumbnail", "<img id=thumbnail src=#{thumbnail}/>");
 			replace_inner("#synopsis", "Synopsis: #{synopsis}");
 //			replace_inner("#ratings", "#{criticRatings.as("str")}");
-			replace_inner("#ratings", "#{criticRatings}");
+		
+			replace_inner("#critic_rating, "#{critic_rating}");
+			replace_inner("#audience_rating, "#{audience_rating}");
+			replace_inner("#critic_score, "#{critic_score}");
+			replace_inner("#audience_score, "#{audience_score}");
+
 			replace_inner("#mpaaRating", "Rated: #{movieRating}");
 		}
 		//throw event with title = title
