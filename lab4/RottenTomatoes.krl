@@ -83,7 +83,7 @@ ruleset rotten_tomatoes {
 					<p>Movie Data:</p>
 					<h2 id=movie_title></h2>
 					<p id=release_date></p>
-					<img id=thumbnail src=#{thumbnail}/>
+					<img id=thumbnail src=#{thumbnail}></img>
 					<p id=synopsis></p>
 					<p id=ratings></p>
 					<p id=mpaaRating></p>
@@ -95,6 +95,7 @@ ruleset rotten_tomatoes {
 			
 			replace_inner("#movie_title", "#{title}");
 			replace_inner("#release_date", "Released: #{release_date}");
+			notify("img src", "#{thumbnail}") with sticky=true;
 //			replace_html("#thumbnail", "<img id=thumbnail src=#{thumbnail}/>");
 			replace_inner("#synopsis", "Synopsis: #{synopsis}");
 //			replace_inner("#ratings", "#{criticRatings.as("str")}");
