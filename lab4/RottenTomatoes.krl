@@ -26,8 +26,9 @@ ruleset rotten_tomatoes {
 								{"apikey":key, "q":title.replace(re/ /g, "+"), "page_limit": 1});
 					body = result.pick("$.content");
 					movieArray = body.pick("$.movies");
-					movie = movieArray[0];
-					movie
+					movieArray
+//					movie = movieArray[0];
+//					movie
 				}
 	}
 	
