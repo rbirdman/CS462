@@ -113,7 +113,6 @@ ruleset rotten_tomatoes {
 					<p id=concensus></p>
 					
 					<p id=mpaaRating></p>
-					<p id=raw_data>Raw Data: #{movieDataString}</p>
 				>>;
 		}
 		{
