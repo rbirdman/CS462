@@ -99,11 +99,13 @@ ruleset rotten_tomatoes {
 			
 			critics_consensus = movieData.pick("$..critics_consensus");
 			movieRating = movieData.pick("$..mpaa_rating");
+			runtime = movieData.pick("$..runtime");
 			
 			displayHTML = <<
 					<p>Movie Data:</p>
 					<h2 id=movie_title></h2>
 					<p id=release_date></p>
+					<p id=runtime">Runtime: #{runtime} minutes</p>
 					<img id=thumbnail src=#{thumbnail}></img>
 					<p id=synopsis></p>
 					
