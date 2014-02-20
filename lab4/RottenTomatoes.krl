@@ -72,12 +72,12 @@ ruleset rotten_tomatoes {
 			movieData = result.pick("$.content");
 //			movieData = getMovieData(event:attr("title"));
 //			type = result.typeof(); //result is a hash
-			movieArray = result.pick("$.content.movies");
+			movieArray = result.pick("$.content.movies").as("str");
 			total = result.pick("$content.total").as("str");
 			synopsis = result.pick("$..synopsis").as("str");
 		}
 		{
-			replace_inner("#movieInfo", "HTTP Response: #{resultString}<br>JSON Response #{type}: #{movieData}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsis}");
+			replace_inner("#movieInfo", "HTTP Response: #{resultString}<br>JSON Response #{type}: #{movieData}<br>MovieArray: #{movieArray}<br>Total: #{total}<br>Synopsis: #{synopsis}");
 		}
 		//throw event with title = title
 	}
