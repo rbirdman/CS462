@@ -43,6 +43,9 @@ ruleset rotten_tomatoes {
 					<input type="submit" value="Submit" />
 				</form>
 				>>;
+		data_html = <<
+						<div id="movieInfo"/>
+					>>;
 	}
 	{
 		SquareTag:inject_styling();
@@ -50,6 +53,7 @@ ruleset rotten_tomatoes {
 		
 		replace_html('#main', my_html);
 		append('#main', my_form);
+		append('#main', data_html);
 		watch('#form', "submit");
 	}
 }
@@ -64,6 +68,7 @@ ruleset rotten_tomatoes {
 		}
 		{
 			notify("Movie title", title);
+			replace_inner("#movieInfo", "Title: #{title}");
 		}
 	}
 	
