@@ -67,6 +67,7 @@ ruleset rotten_tomatoes {
 		select when web submit "#form"
 		pre {
 			movieData = getMovieData(event:attr("title"));
+			type = movieData.typeof();
 			response = movieData.as("str");
 			movieArray = movieData["movies"];
 			movieString = movieArray.as("str");
@@ -76,7 +77,7 @@ ruleset rotten_tomatoes {
 			synopsisText = synopsis.as("str");
 		}
 		{
-			replace_inner("#movieInfo", "JSON Response: #{response}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsisText}");
+			replace_inner("#movieInfo", "JSON Response #{type}: #{response}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsisText}");
 		}
 		//throw event with title = title
 	}
