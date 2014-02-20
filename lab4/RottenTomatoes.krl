@@ -61,16 +61,42 @@ ruleset rotten_tomatoes {
 	//Avengers: http://www.imdb.com/title/tt0848228/?ref_=nv_sr_2
 	//Thor 2: http://www.imdb.com/title/tt1981115/?ref_=nv_sr_1
 	//Pirates 2: http://www.imdb.com/title/tt0383574/?ref_=tt_rec_tti
+	
+	//Movie thumbnail,Title,Release Year,Synopsis,Critic ratings,and other data you find interesting. 
 	rule obtain_rating {
 		select when web submit "#form"
 		pre {
 			movieData = getMovieData(event:attr("title"));
 			movieDataString = movieData.as("str");
+			
 			title = movieData.pick("$.title");
 			synopsis = movieData.pick("$..synopsis");
+			release_date = movieData.pick("$..release_dates.theater");
+			criticRatings = movieData.pick("$..ratings");
+			thumbnail = movieData.pick("$..posters.thumbnail");
+			
+			movieRating = movieData.pick("$..mpaa_rating");
+			
+			displayHTML = <<
+					<p>Movie Data:</p>
+					<h2 id=movie_title></h2>
+					<p id=release_date></p>
+					<img id=thumbnail/>
+					<p id=synopsis></p>
+					<p id=ratings></p>
+					<p id=mpaaRating></p>
+				>>;
 		}
 		{
-			replace_inner("#movieInfo", "Movie Data: #{movieDataString} <br>Movie Title: #{title}<br>Synopsis: #{synopsis}");
+//			replace_inner("#movieInfo", "Movie Data: #{movieDataString} <br>Movie Title: #{title}<br>Synopsis: #{synopsis}");
+			replace_inner("#movieInfo", "#{displayHTML}");
+			
+			replace_inner("#movie_title", "#{title}");
+			replace_inner("#release_date", "#{release_date}");
+			replace_inner("#thumbnail", "#{thumbnail}");
+			replace_inner("#synopsis", "#{synopsis}");
+			replace_inner("#ratings", "#{criticRatings}");
+			replace_inner("#mpaaRating", "#{movieRating}");
 		}
 		//throw event with title = title
 	}
