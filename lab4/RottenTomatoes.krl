@@ -77,6 +77,12 @@ ruleset rotten_tomatoes {
 			criticRatings = movieData.pick("$..ratings").as("str");
 			thumbnail = movieData.pick("$..posters.thumbnail");
 			
+			critic_rating = criticRatings.pick("$.critic_rating");
+			audience_rating = criticRatings.pick("$.audience_rating");
+			critic_score = criticRatings.pick("$.critic_score");
+			audience_score = criticRatings.pick("$.audience_score");
+			
+			
 			movieRating = movieData.pick("$..mpaa_rating");
 			
 			displayHTML = <<
@@ -85,7 +91,25 @@ ruleset rotten_tomatoes {
 					<p id=release_date></p>
 					<img id=thumbnail src=#{thumbnail}></img>
 					<p id=synopsis></p>
-					<p id=ratings></p>
+					
+					<table>
+					<tr>
+						<td></td>
+						<td>Critics</td> 
+						<td>Audience</td>
+					</tr>
+					<tr>
+						<td>Rating</td>
+						<td id=critic_rating></td> 
+						<td id=audience_rating></td>
+					</tr>
+					<tr>
+						<td>Score</td>
+						<td id=critic_score></td> 
+						<td id=audience_score></td>
+					</tr>
+					</table>
+					
 					<p id=mpaaRating></p>
 				>>;
 		}
