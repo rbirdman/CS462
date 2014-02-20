@@ -24,9 +24,10 @@ ruleset rotten_tomatoes {
 		getMovieData = function(title) {
 					result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
 								{"apikey":key, "q":title.replace(re/ /g, "+"), "page_limit": 1});
-					body = result.pick("$.content");
-					movieArray = body.pick("$.movies");
-					movieArray
+					body = result.pick("$.content..movies");
+					body
+//					movieArray = body.pick("$.movies");
+//					movieArray
 //					movie = movieArray[0];
 //					movie
 				}
