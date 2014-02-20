@@ -72,9 +72,11 @@ ruleset rotten_tomatoes {
 			movieString = movieArray.as("str");
 			total = movieData.pick("$..total");
 			total = total.as("str");
+			synopsis = movieData.pick("$..synopsis");
+			synopsisText = synopsis.as("str");
 		}
 		{
-			replace_inner("#movieInfo", "JSON Response: #{response}<br>MovieArray: #{movieString}<br>Total: #{total}");
+			replace_inner("#movieInfo", "JSON Response: #{response}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsisText}");
 		}
 		//throw event with title = title
 	}
