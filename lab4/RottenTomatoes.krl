@@ -127,6 +127,7 @@ ruleset rotten_tomatoes {
 					</tr>
 					</table>
 					
+					<br>
 					<p id=concensus></p>
 					
 					<p id=mpaaRating></p>
