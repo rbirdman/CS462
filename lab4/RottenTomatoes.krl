@@ -82,6 +82,7 @@ ruleset rotten_tomatoes {
 			critic_score = criticRatings.pick("$.critics_score").as("str");
 			audience_score = criticRatings.pick("$.audience_score").as("str");
 			
+			critics_consensus = movieData.pick("$..critics_consensus");
 			movieRating = movieData.pick("$..mpaa_rating");
 			
 			displayHTML = <<
@@ -109,6 +110,8 @@ ruleset rotten_tomatoes {
 					</tr>
 					</table>
 					
+					<p id=concensus></p>
+					
 					<p id=mpaaRating></p>
 					<p id=raw_data>Raw Data: #{movieDataString}</p>
 				>>;
@@ -127,7 +130,8 @@ ruleset rotten_tomatoes {
 //			replace_inner("#audience_rating, "#{audience_rating}");
 //			replace_inner("#critic_score, "#{critic_score}");
 //			replace_inner("#audience_score, "#{audience_score}");
-
+			
+			replace_inner("#concensus", "Critics Consensus: #{critics_consensus}");
 			replace_inner("#mpaaRating", "Rated: #{movieRating}");
 		}
 		//throw event with title = title
