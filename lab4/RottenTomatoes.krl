@@ -72,8 +72,8 @@ ruleset rotten_tomatoes {
 //			movieData = getMovieData(event:attr("title"));
 //			type = result.typeof(); //result is a hash
 			movieArray = result.pick("$..movies");
-			total = result.pick("$.total");
-			synopsis = result.pick("$..synopsis");
+			total = result.pick("$.total").as("str");
+			synopsis = result.pick("$..synopsis").as("str");
 		}
 		{
 			replace_inner("#movieInfo", "JSON Response #{type}: #{movieData}<br>MovieArray: #{movieString}<br>Total: #{total}<br>Synopsis: #{synopsis}");
