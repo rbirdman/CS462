@@ -68,11 +68,13 @@ ruleset rotten_tomatoes {
 		pre {
 			movieData = getMovieData(event:attr("title"));
 			response = movieData.as("str");
-			movieArray = movieData.pick("$.movies");
+			movieArray = movieData.pick("$..movies");
 			movieString = movieArray.as("str");
+			total = movieData.pick("$..total");
+			total = total.as("str");
 		}
 		{
-			replace_inner("#movieInfo", "JSON Response: #{response}\nMovieArray: #{movieString}");
+			replace_inner("#movieInfo", "JSON Response: #{response}<br>MovieArray: #{movieString}<br>Total: #{total}");
 		}
 		//throw event with title = title
 	}
