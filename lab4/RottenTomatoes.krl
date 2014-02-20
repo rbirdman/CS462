@@ -110,6 +110,7 @@ ruleset rotten_tomatoes {
 					</table>
 					
 					<p id=mpaaRating></p>
+					<p id=raw_data>Raw Data: #{movieDataString}</p>
 				>>;
 		}
 		{
