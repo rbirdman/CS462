@@ -39,8 +39,7 @@ ruleset rotten_tomatoes {
 		>>;
 		my_form = <<
 				<form id="form" onsubmit="return false">
-					<input type="text" name="first" />
-					<input type="text" name="last" />
+					<input type="text" name="title" />
 					<input type="submit" value="Submit" />
 				</form>
 				>>;
