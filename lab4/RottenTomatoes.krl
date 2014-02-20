@@ -31,15 +31,40 @@ ruleset rotten_tomatoes {
 				}
 	}
 	
+	rule SquareTagForm is active {
+		select when web cloudAppSelected
+	pre {
+		my_html = <<
+			<div id="main">Enter in a movie title:</div>
+		>>;
+		my_form = <<
+				<form id="form" onsubmit="return false">
+					<input type="text" name="first" />
+					<input type="text" name="last" />
+					<input type="submit" value="Submit" />
+				</form>
+				>>;
+	}
+	{
+		SquareTag:inject_styling();
+		CloudRain:createLoadPanel("Hello World", {}, my_html);
+		
+		replace_html('#main', my_html);
+		append('#main', my_form);
+		watch('#form', "submit");
+	}
+}
 	
 	//Avengers: http://www.imdb.com/title/tt0848228/?ref_=nv_sr_2
 	//Thor 2: http://www.imdb.com/title/tt1981115/?ref_=nv_sr_1
 	//Pirates 2: http://www.imdb.com/title/tt0383574/?ref_=tt_rec_tti
 	rule obtain_rating {
-		select when pageview url re#imdb#
-				and pageview url re#/title/tt\d+# setting (movie_id)
+		select when web submit "#form"
+		pre {
+			title = event:attr("title");
+		}
 		{
-			notify("Movie id", movie_id)
+			notify("Movie title", title) with sticky = true;
 		}
 	}
 	
