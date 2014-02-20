@@ -25,9 +25,7 @@ ruleset rotten_tomatoes {
 					result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
 								{"apikey":key, "q":title, "page_limit": 1});
 					body = result.pick("$.content").decode();
-//					body
 					movieArray = body.pick("$.movies");
-//					movieArray
 					movie = movieArray[0];
 					movie
 				}
@@ -66,12 +64,7 @@ ruleset rotten_tomatoes {
 	rule obtain_rating {
 		select when web submit "#form"
 		pre {
-//			result = getMovieData(event:attr("title"));
-//			resultString = result.as("str");
-//			movieData = result.pick("$.content").decode();
 			movieData = getMovieData(event:attr("title"));
-//			movieArray = movieData.pick("$..movies").as("str");
-//			total = movieData.pick("$.total").as("str");
 			movieDataString = movieData.as("str");
 			title = movieData.pick("$.title");
 			synopsis = movieData.pick("$..synopsis");
