@@ -94,9 +94,9 @@ ruleset rotten_tomatoes {
 					
 					<table>
 					<tr>
-						<td></td>
-						<td>Critics</td> 
-						<td>Audience</td>
+						<td width=25px></td>
+						<td width=25px>Critics</td> 
+						<td width=25px>Audience</td>
 					</tr>
 					<tr>
 						<td>Rating</td>
