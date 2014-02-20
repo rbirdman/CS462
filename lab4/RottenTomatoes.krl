@@ -24,10 +24,9 @@ ruleset rotten_tomatoes {
 		getMovieData = function(title) {
 					result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
 								{"apikey":key, "q":title.replace(re/ /g, "+"), "page_limit": 1});
-					result
 					body = result.pick("$.content").decode();
 //					body
-					movieArray = body.pick("$.movies");
+					movieArray = decoded.pick("$.movies");
 //					movieArray
 					movie = movieArray[0];
 					movie
@@ -73,7 +72,7 @@ ruleset rotten_tomatoes {
 			movieData = getMovieData(event:attr("title"));
 //			movieArray = movieData.pick("$..movies").as("str");
 //			total = movieData.pick("$.total").as("str");
-			title = movieData.pick($.title);
+			title = movieData.pick("$.title");
 			synopsis = movieData.pick("$..synopsis");
 		}
 		{
