@@ -58,6 +58,20 @@ ruleset rotten_tomatoes {
 	}
 }
 	
+	
+	rule clear_movie_info {
+		select when web submit "#form"
+		pre {
+			title = event:attr("title");
+			displayHTML = <<
+				<p>Sorry. Could not find "#{title}"</p>
+			>>;
+		}
+		{
+			replace_inner("#movieInfo", "#{displayHTML}");
+		}
+	}
+	
 	//Avengers: http://www.imdb.com/title/tt0848228/?ref_=nv_sr_2
 	//Thor 2: http://www.imdb.com/title/tt1981115/?ref_=nv_sr_1
 	//Pirates 2: http://www.imdb.com/title/tt0383574/?ref_=tt_rec_tti
