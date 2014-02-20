@@ -72,11 +72,12 @@ ruleset rotten_tomatoes {
 			movieData = getMovieData(event:attr("title"));
 //			movieArray = movieData.pick("$..movies").as("str");
 //			total = movieData.pick("$.total").as("str");
+			movieDataString = movieData.as("str");
 			title = movieData.pick("$.title");
 			synopsis = movieData.pick("$..synopsis");
 		}
 		{
-			replace_inner("#movieInfo", "Movie Title: #{title}<br>Total: #{total}<br>Synopsis: #{synopsis}");
+			replace_inner("#movieInfo", "Movie Data: #{movieDataString} <br>Movie Title: #{title}<br>Synopsis: #{synopsis}");
 		}
 		//throw event with title = title
 	}
