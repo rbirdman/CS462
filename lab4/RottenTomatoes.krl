@@ -115,7 +115,7 @@ ruleset rotten_tomatoes {
 					<p id=mpaaRating></p>
 				>>;
 		}
-		if movieDataString then {
+		if title then {
 //			replace_inner("#movieInfo", "Movie Data: #{movieDataString} <br>Movie Title: #{title}<br>Synopsis: #{synopsis}");
 			replace_inner("#movieInfo", "#{displayHTML}");
 			
