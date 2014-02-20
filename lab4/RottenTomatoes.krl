@@ -62,6 +62,8 @@ ruleset rotten_tomatoes {
 	//Thor 2: http://www.imdb.com/title/tt1981115/?ref_=nv_sr_1
 	//Pirates 2: http://www.imdb.com/title/tt0383574/?ref_=tt_rec_tti
 	
+	//Toy Story 3, Finding Nemo, Batman Begins
+	
 	//Movie thumbnail,Title,Release Year,Synopsis,Critic ratings,and other data you find interesting. 
 	rule obtain_rating {
 		select when web submit "#form"
@@ -72,7 +74,7 @@ ruleset rotten_tomatoes {
 			title = movieData.pick("$.title");
 			synopsis = movieData.pick("$..synopsis");
 			release_date = movieData.pick("$..release_dates.theater");
-			criticRatings = movieData.pick("$..ratings");
+			criticRatings = movieData.pick("$..ratings").as("str");
 			thumbnail = movieData.pick("$..posters.thumbnail");
 			
 			movieRating = movieData.pick("$..mpaa_rating");
@@ -95,7 +97,8 @@ ruleset rotten_tomatoes {
 			replace_inner("#release_date", "Released: #{release_date}");
 			replace_html("#thumbnail", "<img id=thumbnail src=#{thumbnail}/>");
 			replace_inner("#synopsis", "Synopsis: #{synopsis}");
-			replace_inner("#ratings", "#{criticRatings.as("str")}");
+//			replace_inner("#ratings", "#{criticRatings.as("str")}");
+			replace_inner("#ratings", "#{criticRatings}");
 			replace_inner("#mpaaRating", "Rated: #{movieRating}");
 		}
 		//throw event with title = title
