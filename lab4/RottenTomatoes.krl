@@ -64,10 +64,10 @@ ruleset rotten_tomatoes {
 	rule obtain_rating {
 		select when web submit "#form"
 		pre {
-			
+			movieData = getMovieData(event:attr("title"));
 		}
 		{
-			
+			replace_inner("#movieInfo", "JSON Response: #{movieData}");
 		}
 		//throw event with title = title
 	}
@@ -80,7 +80,7 @@ ruleset rotten_tomatoes {
 		}
 		{
 			notify("Movie title", title);
-			replace_inner("#movieInfo", "Title: #{title}");
+//			replace_inner("#movieInfo", "Title: #{title}");
 		}
 	}
 	
