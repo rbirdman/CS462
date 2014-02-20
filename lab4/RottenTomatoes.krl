@@ -52,8 +52,8 @@ ruleset rotten_tomatoes {
 		CloudRain:createLoadPanel("Hello World", {}, my_html);
 		
 		replace_html('#main', my_html);
-		append('#main', my_form);
 		append('#main', data_html);
+		append('#main', my_form);
 		watch('#form', "submit");
 	}
 }
