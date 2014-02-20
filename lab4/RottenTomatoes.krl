@@ -68,9 +68,9 @@ ruleset rotten_tomatoes {
 		pre {
 			movieData = getMovieData(event:attr("title"));
 			response = movieData.as("str");
-			movieArray = movieData.pick("$..movies");
+			movieArray = movieData["movies"];
 			movieString = movieArray.as("str");
-			total = movieData.pick("$..total");
+			total = movieData.pick("$.total");
 			total = total.as("str");
 			synopsis = movieData.pick("$..synopsis");
 			synopsisText = synopsis.as("str");
