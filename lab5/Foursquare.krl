@@ -51,6 +51,7 @@ ruleset rotten_tomatoes {
 		
 			replace_html('#main', my_html);
 			append('#main', data_html);
+			append('#main', my_form);
 			watch('#form', "submit");
 		}
 	}
