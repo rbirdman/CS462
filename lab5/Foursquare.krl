@@ -35,6 +35,12 @@ ruleset rotten_tomatoes {
 				<div id="main">Checkin Info:</div>
 			>>;
 			
+			my_form = <<
+				<form id="form" onsubmit="return false">
+					<input type="submit" value="Foursquare" />
+				</form>
+				>>;
+			
 			data_html = <<
 							<div id="checkinInfo"/>
 						>>;
@@ -45,11 +51,12 @@ ruleset rotten_tomatoes {
 		
 			replace_html('#main', my_html);
 			append('#main', data_html);
+			watch('#form', "submit");
 		}
 	}
 	
 	//The rule should store the venue, city, shout, and createdAt event attributes in entity variables.
-	rule process_fs_checkin {
+	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
 			venue = "Test Venue";
@@ -69,7 +76,7 @@ ruleset rotten_tomatoes {
 		
 	}
 	
-	rule display_checkin {
+	rule display_checkin is active {
 		select when foursquare checkin
 		
 		pre {
@@ -81,8 +88,18 @@ ruleset rotten_tomatoes {
 			>>;
 		}
 		{
+			notify("Checkin received","Replacing html");
 			replace_html("#checkinInfo", html);
 		}
 	}
-
+	
+	rule signinFoursquare {
+		select when web submit "#form"
+		pre {
+			
+		}
+		{
+			notify("Make Oauth call here","Allow for any user");
+		}
+	}
 }
