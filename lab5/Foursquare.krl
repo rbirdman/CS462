@@ -1,6 +1,6 @@
 ruleset rotten_tomatoes {
 	meta {
-		name "Hello World"
+		name "Foursquare Checkins"
 		description <<
 			Hello World
 			>>
