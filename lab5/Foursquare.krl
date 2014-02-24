@@ -48,21 +48,31 @@ ruleset rotten_tomatoes {
 	
 	//The rule should store the venue, city, shout, and createdAt event attributes in entity variables.
 	rule process_fs_checkin {
-		select when foursquare:checkin
+//		select when foursquare:checkin
+		select when foursquare checkin
+//		select when web cloudAppSelected
 		pre {
-			ent:venue = "Test Venue";
-			ent:city = "Test City";
-			ent:shout = "Test Shout";
-			ent:createdAt = "Test Created At";
+			venue = "Test Venue";
+			city = "Test City";
+			shout = "Test Shout";
+			createdAt = "Test Created At";
 		}
 		{
 			notify("Checkin received","from Foursquare");
+		}
+		fired {
+			set ent:venue venue;
+			set ent:city city;
+			set ent:shout shout;
+			set ent:createdAt createdAt;
 		}
 		
 	}
 	
 	rule display_checkin {
-		select when foursquare:checkin
+//		select when foursquare:checkin
+		select when foursquare checkin
+//		select when web cloudAppSelected
 		pre {
 			html = <<
 				<p>Venue: #{ent:venue}</p>
