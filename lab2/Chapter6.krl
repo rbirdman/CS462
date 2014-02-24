@@ -36,7 +36,7 @@ ruleset HelloWorldApp {
 	 {
 		alert("You are entering Heroku territory");
 		notify("Heroku","Congratulations, You fired a notification on Heroku") with sticky = true;
-    notify("This is a second notification", "Within the same rule");
+		notify("This is a second notification", "Within the same rule");
 	 }
   }
   
