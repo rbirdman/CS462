@@ -22,6 +22,8 @@ ruleset rotten_tomatoes {
 	
 	//Name:Foursquare Checkins
 	//ID:A91B1BA0-9B4A-11E3-9413-761EF81F7F35
+	// cs.kobj.net/sky/event/A91B1BA0-9B4A-11E3-9413-761EF81F7F35/5/foursquare/checkin
+	// http://cs.kobj.net/sky/event/A91B1BA09B4A11E39413761EF81F7F35/5/foursquare/checkin
 	global {
 		
 	}
@@ -48,9 +50,7 @@ ruleset rotten_tomatoes {
 	
 	//The rule should store the venue, city, shout, and createdAt event attributes in entity variables.
 	rule process_fs_checkin {
-//		select when foursquare:checkin
 		select when foursquare checkin
-//		select when web cloudAppSelected
 		pre {
 			venue = "Test Venue";
 			city = "Test City";
@@ -70,9 +70,8 @@ ruleset rotten_tomatoes {
 	}
 	
 	rule display_checkin {
-//		select when foursquare:checkin
 		select when foursquare checkin
-//		select when web cloudAppSelected
+		
 		pre {
 			html = <<
 				<p>Venue: #{ent:venue}</p>
