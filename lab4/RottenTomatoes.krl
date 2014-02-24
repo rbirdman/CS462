@@ -33,31 +33,31 @@ ruleset rotten_tomatoes {
 	
 	rule SquareTagForm is active {
 		select when web cloudAppSelected
-	pre {
-		my_html = <<
-			<div id="main"></div>
-		>>;
-		my_form = <<
-				<p>Enter in a movie title:</p>
-				<form id="form" onsubmit="return false">
-					<input type="text" name="title" />
-					<input type="submit" value="Submit" />
-				</form>
-				>>;
-		data_html = <<
-						<div id="movieInfo"/>
+		pre {
+			my_html = <<
+				<div id="main"></div>
+			>>;
+			my_form = <<
+					<p>Enter in a movie title:</p>
+					<form id="form" onsubmit="return false">
+						<input type="text" name="title" />
+						<input type="submit" value="Submit" />
+					</form>
 					>>;
-	}
-	{
-		SquareTag:inject_styling();
-		CloudRain:createLoadPanel("Hello World", {}, my_html);
+			data_html = <<
+							<div id="movieInfo"/>
+						>>;
+		}
+		{
+			SquareTag:inject_styling();
+			CloudRain:createLoadPanel("Hello World", {}, my_html);
 		
-		replace_html('#main', my_html);
-		append('#main', data_html);
-		append('#main', my_form);
-		watch('#form', "submit");
+			replace_html('#main', my_html);
+			append('#main', data_html);
+			append('#main', my_form);
+			watch('#form', "submit");
+		}
 	}
-}
 	
 	
 	rule clear_movie_info {
