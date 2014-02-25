@@ -5,7 +5,7 @@ ruleset rotten_tomatoes {
 			Hello World
 			>>
 		author "Ryan Bird"
-		logging off
+		logging on
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
 	}
