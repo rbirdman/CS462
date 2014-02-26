@@ -59,10 +59,10 @@ ruleset rotten_tomatoes {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
-			venue = "Test Venue";
-			city = "Test City";
-			shout = "Test Shout";
-			createdAt = "Test Created At";
+			venue = "Test Venue2";
+			city = "Test City2";
+			shout = "Test Shout2";
+			createdAt = "Test Created At2";
 		}
 		{
 			notify("Checkin received","from Foursquare");
