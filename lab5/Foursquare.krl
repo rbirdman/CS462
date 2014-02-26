@@ -66,6 +66,7 @@ ruleset rotten_tomatoes {
 		}
 		{
 			notify("Checkin received","from Foursquare");
+			send_directive('text') with body = "test";
 		}
 		fired {
 			set ent:venue venue;
