@@ -59,10 +59,10 @@ ruleset rotten_tomatoes {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
-			venue = "Test Venue2";
-			city = "Test City2";
-			shout = "Test Shout2";
-			createdAt = "Test Created At2";
+			venue = "Test Venue" + ent:count.as("str");
+			city = "Test City" + ent:count.as("str");
+			shout = "Test Shout" + ent:count.as("str");
+			createdAt = "Test Created At" + ent:count.as("str");
 		}
 		{
 			notify("Checkin received","from Foursquare");
@@ -72,6 +72,7 @@ ruleset rotten_tomatoes {
 			set ent:city city;
 			set ent:shout shout;
 			set ent:createdAt createdAt;
+			ent:count += 1 from 0;
 		}
 		
 	}
@@ -100,6 +101,10 @@ ruleset rotten_tomatoes {
 		}
 		{
 			notify("Make Oauth call here","Allow for any user");
+			notify("Cleared","Count");
+		}
+		fired {
+			clear ent:count
 		}
 	}
 }
