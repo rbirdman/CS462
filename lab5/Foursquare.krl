@@ -95,6 +95,7 @@ ruleset rotten_tomatoes {
 		{
 			notify("Checkin received","Replacing html");
 			replace_html("#checkinInfo", html);
+			send_directive('text') with changedHTML = "true";
 		}
 	}
 	
