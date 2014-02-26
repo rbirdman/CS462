@@ -23,7 +23,6 @@ ruleset rotten_tomatoes {
 	//Name:Foursquare Checkins
 	//ID:A91B1BA0-9B4A-11E3-9413-761EF81F7F35
 	// cs.kobj.net/sky/event/A91B1BA0-9B4A-11E3-9413-761EF81F7F35/5/foursquare/checkin
-	// http://cs.kobj.net/sky/event/A91B1BA09B4A11E39413761EF81F7F35/5/foursquare/checkin
 	global {
 		
 	}
@@ -89,8 +88,8 @@ ruleset rotten_tomatoes {
 			>>;
 		}
 		{
-			notify("Checkin received","Replacing html");
-			replace_html("#checkinInfo", html);
+			send_directive(notify("Checkin received","Replacing html"));
+			send_directive(replace_html("#checkinInfo", html));
 		}
 	}
 	
