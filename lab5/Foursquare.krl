@@ -77,7 +77,7 @@ ruleset rotten_tomatoes {
 	}
 	
 	rule display_checkin is active {
-		select when foursquare checkin
+		select when web cloudAppSelected
 		
 		pre {
 			html = <<
@@ -88,8 +88,8 @@ ruleset rotten_tomatoes {
 			>>;
 		}
 		{
-			send_directive(notify("Checkin received","Replacing html"));
-			send_directive(replace_html("#checkinInfo", html));
+			notify("Checkin received","Replacing html");
+			replace_html("#checkinInfo", html);
 		}
 	}
 	
