@@ -82,7 +82,7 @@ ruleset rotten_tomatoes {
 	
 	rule display_checkin is active {
 		select when web cloudAppSelected
-			or explicit checkin_success;
+			or explicit checkin_success
 		
 		pre {
 			html = <<
