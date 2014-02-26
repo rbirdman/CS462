@@ -73,12 +73,15 @@ ruleset rotten_tomatoes {
 			set ent:shout shout;
 			set ent:createdAt createdAt;
 			ent:count += 1 from 0;
+			
+			raise explicit event checkin_success;
 		}
 		
 	}
 	
 	rule display_checkin is active {
-		select when web cloudAppSelected
+		select when web cloudAppSelected or
+			explicit checkin_success
 		
 		pre {
 			html = <<
