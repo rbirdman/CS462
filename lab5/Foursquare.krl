@@ -75,7 +75,6 @@ ruleset rotten_tomatoes {
 			set ent:createdAt createdAt;
 			ent:count += 1 from 0;
 			
-			raise web event cloudAppSelected;
 //			raise explicit event checkin_success;
 		}
 		
