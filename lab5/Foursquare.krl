@@ -62,7 +62,7 @@ ruleset rotten_tomatoes {
 			venue = event:attr("venue");
 			city = event:attr("content").typeof();
 			shout = event:attr("content").as("str");
-			createdAt = "Test Created At" + ent:count.as("str");
+			createdAt = event:attr("createdAt");
 		}
 		{
 			notify("Checkin received","from Foursquare");
