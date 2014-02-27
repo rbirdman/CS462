@@ -103,14 +103,23 @@ ruleset rotten_tomatoes {
 		}
 	}
 	
+	//https://foursquare.com/oauth2/authenticate
+    //?client_id=NEJBAKQFILH5P01MMGF4SCUKD21TWPOYWFUHKXFCEBXBR1NT
+    //&response_type=code
+    //&redirect_uri=https://squaretag.com/app.html#!/app/b502807x10/show
+	
 	rule signinFoursquare {
 		select when web submit "#form"
 		pre {
-			
+			url = "https://foursquare.com/oauth2/authenticate" +
+				"?client_id=NEJBAKQFILH5P01MMGF4SCUKD21TWPOYWFUHKXFCEBXBR1NT" +
+				"&response_type=code" +
+				"&redirect_uri=https://squaretag.com/app.html#!/app/b502807x10/show";
 		}
 		{
-			notify("Make Oauth call here","Allow for any user");
-			notify("Cleared","Count");
+			redirect(url);
+//			notify("Make Oauth call here","Allow for any user");
+//			notify("Cleared","Count");
 		}
 		fired {
 			clear ent:count
