@@ -60,8 +60,8 @@ ruleset rotten_tomatoes {
 		select when foursquare checkin
 		pre {
 			venue = event:attr("venue");
-			city = checkin.typeof();
-			shout = checkin.as("str");
+			city = event:attr().typeof();
+			shout = event:attr().as("str");
 			createdAt = "Test Created At" + ent:count.as("str");
 		}
 		{
@@ -89,6 +89,7 @@ ruleset rotten_tomatoes {
 				<p>City: #{ent:city}</p>
 				<p>Shout: #{ent:shout}</p>
 				<p>Created At: #{ent:createdAt}</p>
+				<p>Count: #{ent:count}</p>
 			>>;
 		}
 		{
