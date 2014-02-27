@@ -59,6 +59,7 @@ ruleset rotten_tomatoes {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
+			venueFoursquare = event:attr("venue");
 			venue = "Test Venue" + ent:count.as("str");
 			city = "Test City" + ent:count.as("str");
 			shout = "Test Shout" + ent:count.as("str");
@@ -69,6 +70,7 @@ ruleset rotten_tomatoes {
 			send_directive('text') with body = "test";
 		}
 		fired {
+			set ent:venueFoursquare venueFoursquare;
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
@@ -77,14 +79,13 @@ ruleset rotten_tomatoes {
 			
 			raise explicit event checkin_success;
 		}
-		
 	}
 	
 	rule display_checkin is active {
 		select when web cloudAppSelected
-			or explicit checkin_success
 		
 		pre {
+			stringValue = ent:venueFoursquare.typeof();
 			html = <<
 				<p>Venue: #{ent:venue}</p>
 				<p>City: #{ent:city}</p>
@@ -93,7 +94,7 @@ ruleset rotten_tomatoes {
 			>>;
 		}
 		{
-			notify("Checkin received","Replacing html");
+			notify("Foursquare Venue:", stringValue);
 			replace_html("#checkinInfo", html);
 		}
 	}
