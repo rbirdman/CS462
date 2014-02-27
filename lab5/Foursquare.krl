@@ -60,10 +60,10 @@ ruleset rotten_tomatoes {
 		select when foursquare checkin
 		pre {
 			checkin = event:attr("checkin").decode();
-			venue = checkin.pick("$..venue").as("str");
-			city = checkin.pick("$..city").as("str");
-			shout = checkin.pick("$..shout").as("str");
-			createdAt = checkin.pick("$..createdAt").as("str");
+			venue = checkin.pick("$..venue");
+			city = checkin.pick("$..city");
+			shout = checkin.pick("$..shout");
+			createdAt = checkin.pick("$..createdAt");
 		}
 		{
 			notify("Checkin received","from Foursquare");
@@ -84,12 +84,16 @@ ruleset rotten_tomatoes {
 		select when web cloudAppSelected
 		
 		pre {
-			stringValue = ent:venue.typeof() + " " + ent:venue.as("str");
+			venue = ent:venue.as("str");
+			city = ent:city.as("str");
+			shout = ent:shout.as("str);
+			createdAt = ent:createdAt.as("str");
+			
 			html = <<
-				<p>Venue: #{ent:venue}</p>
-				<p>City: #{ent:city}</p>
-				<p>Shout: #{ent:shout}</p>
-				<p>Created At: #{ent:createdAt}</p>
+				<p>Venue: #{venue}</p>
+				<p>City: #{city}</p>
+				<p>Shout: #{shout}</p>
+				<p>Created At: #{createdAt}</p>
 				<p>Count: #{ent:count}</p>
 			>>;
 		}
