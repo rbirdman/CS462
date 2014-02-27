@@ -93,7 +93,7 @@ ruleset rotten_tomatoes {
 		pre {
 			venue = ent:venue.as("str");
 			city = ent:city.as("str");
-			shout = ent:shout.as("str);
+			shout = ent:shout.as("str");
 			createdAt = ent:createdAt.as("str");
 			
 			html = <<
@@ -139,7 +139,7 @@ ruleset rotten_tomatoes {
 		pre {
 			code = getKey("code");
 		}
-		if code {
+		if code then {
 			notify("Code:", code);
 		}
 	}
