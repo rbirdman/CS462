@@ -24,7 +24,14 @@ ruleset rotten_tomatoes {
 	//ID:A91B1BA0-9B4A-11E3-9413-761EF81F7F35
 	// cs.kobj.net/sky/event/A91B1BA0-9B4A-11E3-9413-761EF81F7F35/5/foursquare/checkin
 	global {
-		
+		getKey = function(key) {
+			query = page:url("query").replace(re/&/g, "=");
+			queries = query.split(re/=/);
+			index = queries.index(key);
+
+			user = (index < 0) => null | queries[index + 1];
+			user
+		};
 	}
 	
 	rule home is active {
@@ -125,4 +132,16 @@ ruleset rotten_tomatoes {
 			clear ent:count
 		}
 	}
+	
+	rule retrieveAccessToken {
+		select when web cloudAppSelected
+		
+		pre {
+			code = getKey("code");
+		}
+		if code {
+			notify("Code:", code);
+		}
+	}
+	
 }
