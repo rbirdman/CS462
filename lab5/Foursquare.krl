@@ -59,8 +59,9 @@ ruleset rotten_tomatoes {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
-			venue = event:attr("venue");
-			city = event:attr("checkin").typeof();
+			checkin = event:attr("checkin").decode();
+			venue = checkin.pick("$..venue");
+			city = checkin.pick("$..city");
 			shout = event:attr("checkin").as("str");
 			createdAt = event:attr("createdAt");
 		}
