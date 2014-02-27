@@ -60,7 +60,7 @@ ruleset rotten_tomatoes {
 		select when foursquare checkin
 		pre {
 			venue = event:attr("venue");
-			city = "Test City" + ent:count.as("str");
+			city = event:attr("city");
 			shout = "Test Shout" + ent:count.as("str");
 			createdAt = "Test Created At" + ent:count.as("str");
 		}
@@ -69,7 +69,6 @@ ruleset rotten_tomatoes {
 			send_directive('text') with body = "test";
 		}
 		fired {
-			set ent:venueFoursquare venueFoursquare;
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
