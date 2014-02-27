@@ -133,15 +133,15 @@ ruleset rotten_tomatoes {
 		}
 	}
 	
-	rule retrieveAccessToken {
-		select when web cloudAppSelected
-		
-		pre {
-			code = getKey("code");
-		}
-		if code then {
-			notify("Code:", code);
-		}
-	}
+//	rule retrieveAccessToken {
+//		select when web cloudAppSelected
+//		
+//		pre {
+//			code = getKey("code");
+//		}
+//		if code then {
+//			notify("Code:", code);
+//		}
+//	}
 	
 }
