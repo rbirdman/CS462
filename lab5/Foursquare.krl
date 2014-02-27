@@ -60,8 +60,8 @@ ruleset rotten_tomatoes {
 		select when foursquare checkin
 		pre {
 			venue = event:attr("venue");
-			city = event:attr("content").typeof();
-			shout = event:attr("content").as("str");
+			city = event:attr("Check-in").typeof();
+			shout = event:attr("Check-in").as("str");
 			createdAt = event:attr("createdAt");
 		}
 		{
