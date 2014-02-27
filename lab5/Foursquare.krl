@@ -60,10 +60,10 @@ ruleset rotten_tomatoes {
 		select when foursquare checkin
 		pre {
 			checkin = event:attr("checkin").decode();
-			venue = checkin.pick("$..venue");
-			city = checkin.pick("$..city");
-			shout = event:attr("checkin").as("str");
-			createdAt = event:attr("createdAt");
+			venue = checkin.pick("$..venue").as("str");
+			city = checkin.pick("$..city").as("str");
+			shout = event:attr("$..shout").as("str");
+			createdAt = event:attr("$..createdAt").as("str");
 		}
 		{
 			notify("Checkin received","from Foursquare");
