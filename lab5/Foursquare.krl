@@ -62,8 +62,8 @@ ruleset rotten_tomatoes {
 			checkin = event:attr("checkin").decode();
 			venue = checkin.pick("$..venue").as("str");
 			city = checkin.pick("$..city").as("str");
-			shout = event:attr("$..shout").as("str");
-			createdAt = event:attr("$..createdAt").as("str");
+			shout = checkin.pick("$..shout").as("str");
+			createdAt = checkin.pick("$..createdAt").as("str");
 		}
 		{
 			notify("Checkin received","from Foursquare");
