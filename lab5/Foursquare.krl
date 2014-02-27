@@ -59,8 +59,7 @@ ruleset rotten_tomatoes {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
-			venueFoursquare = event:attr("venue");
-			venue = "Test Venue" + ent:count.as("str");
+			venue = event:attr("venue");
 			city = "Test City" + ent:count.as("str");
 			shout = "Test Shout" + ent:count.as("str");
 			createdAt = "Test Created At" + ent:count.as("str");
@@ -85,7 +84,7 @@ ruleset rotten_tomatoes {
 		select when web cloudAppSelected
 		
 		pre {
-			stringValue = ent:venueFoursquare.typeof();
+			stringValue = ent:venue.typeof() + " " + ent:venue.as("str");
 			html = <<
 				<p>Venue: #{ent:venue}</p>
 				<p>City: #{ent:city}</p>
