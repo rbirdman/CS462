@@ -92,13 +92,14 @@ ruleset rotten_tomatoes {
 		select when web cloudAppSelected
 		
 		pre {
+			checkin = ent:checkin.as("str");
 			venue = ent:venue.as("str");
 			city = ent:city.as("str");
 			shout = ent:shout.as("str");
 			createdAt = ent:createdAt.as("str");
 			
 			html = <<
-				<p>Checkin: #{ent:checkin}</p>
+				<p>Checkin: #{checkin}</p>
 				<p>Venue: #{venue}</p>
 				<p>City: #{city}</p>
 				<p>Shout: #{shout}</p>
