@@ -123,8 +123,8 @@ ruleset rotten_tomatoes {
 				"&redirect_uri=https://squaretag.com/app.html#!/app/b502807x10/show";
 		}
 		{
-			redirect(url);
-//			notify("Make Oauth call here","Allow for any user");
+//			redirect(url);
+			notify("Make Oauth call here","Allow for any user");
 //			notify("Cleared","Count");
 		}
 	}
