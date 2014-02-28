@@ -48,8 +48,8 @@ ruleset rotten_tomatoes {
 				>>;
 			
 			data_html = <<
-							<div id="checkinInfo"/>
-						>>;
+					<div id="checkinInfo"/>
+				>>;
 		}
 		{
 			SquareTag:inject_styling();
