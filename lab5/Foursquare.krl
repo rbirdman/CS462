@@ -77,7 +77,7 @@ ruleset rotten_tomatoes {
 			send_directive('text') with body = "test";
 		}
 		fired {
-			set ent:checkin checkin
+			set ent:checkin checkin;
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
