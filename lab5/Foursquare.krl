@@ -101,7 +101,6 @@ ruleset rotten_tomatoes {
 				<p>City: #{city}</p>
 				<p>Shout: #{shout}</p>
 				<p>Created At: #{createdAt}</p>
-				<p>Count: #{ent:count}</p>
 			>>;
 		}
 		{
@@ -128,10 +127,17 @@ ruleset rotten_tomatoes {
 //			notify("Make Oauth call here","Allow for any user");
 //			notify("Cleared","Count");
 		}
-		fired {
-			clear ent:count
-		}
 	}
+	
+//	https://foursquare.com/oauth2/access_token
+//    ?client_id=NEJBAKQFILH5P01MMGF4SCUKD21TWPOYWFUHKXFCEBXBR1NT
+//    &client_secret=IGWKKXPG0XPSVAR3GXYAYT0YSHYHUKI4L44LDBB2KPSXQC5K
+//    &grant_type=authorization_code
+//    &redirect_uri=https://squaretag.com/app.html#!/app/b502807x10/show
+//    &code=
+
+// https://foursquare.com/oauth2/access_token?client_id=NEJBAKQFILH5P01MMGF4SCUKD21TWPOYWFUHKXFCEBXBR1NT&client_secret=IGWKKXPG0XPSVAR3GXYAYT0YSHYHUKI4L44LDBB2KPSXQC5K&grant_type=authorization_code&redirect_uri=https://squaretag.com/app.html&code=CTZ0FUJJ3Z4UQJW5EJ4R3EFD5JIXEVCQRGHUPBJLCNJWSSSO
+// {"access_token":"2MR2O5QA5YVRPITL4PK3MBUX0DOJX5N0DTZBA43FQSXLWY5O"}
 	
 //	rule retrieveAccessToken {
 //		select when web cloudAppSelected
