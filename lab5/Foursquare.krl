@@ -102,15 +102,18 @@ ruleset rotten_tomatoes {
 			city = ent:city.as("str");
 			shout = ent:shout.as("str");
 			createdAt = ent:createdAt.as("str");
+			photoURL = ent:checkin.decode().pick("$..photo");
 			name = ent:fullname;
 			
 			html = <<
 				<p>Checkin: #{checkin}</p>
 				<p>Venue: #{venue}</p>
+				<img src=#{photoURL}></img>
+				<p>Name: #{name}</p>
 				<p>City: #{city}</p>
 				<p>Shout: #{shout}</p>
 				<p>Created At: #{createdAt}</p>
-				<p>Name: #{name}</p>
+				
 			>>;
 		}
 		{
