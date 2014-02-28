@@ -77,6 +77,7 @@ ruleset rotten_tomatoes {
 			send_directive('text') with body = "test";
 		}
 		fired {
+			set ent:checkin checkin
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
@@ -97,6 +98,7 @@ ruleset rotten_tomatoes {
 			createdAt = ent:createdAt.as("str");
 			
 			html = <<
+				<p>Checkin: #{ent:checkin}</p>
 				<p>Venue: #{venue}</p>
 				<p>City: #{city}</p>
 				<p>Shout: #{shout}</p>
