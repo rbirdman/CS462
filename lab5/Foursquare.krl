@@ -62,6 +62,13 @@ ruleset rotten_tomatoes {
 		}
 	}
 	
+	rule listener is active {
+		select when foursquare checkin
+		{
+			send_directive('text') with body = "echo";
+		}
+	}
+	
 	//The rule should store the venue, city, shout, and createdAt event attributes in entity variables.
 	rule process_fs_checkin is active {
 		select when foursquare checkin
