@@ -2,7 +2,7 @@ ruleset rotten_tomatoes {
 	meta {
 		name "Foursquare Checkins"
 		description <<
-			Foursquare Checkin lab
+			Foursquare Checkin lab - Display the checkins
 			>>
 		author "Ryan Bird"
 		logging on
