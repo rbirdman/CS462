@@ -66,7 +66,8 @@ ruleset rotten_tomatoes {
 	rule process_fs_checkin is active {
 		select when foursquare checkin
 		pre {
-			checkin = event:attr("checkin").decode();
+			checkinString = event:attr("checkin");
+			checkin = checkinString.decode();
 			venue = checkin.pick("$..venue");
 			city = checkin.pick("$..city");
 			shout = checkin.pick("$..shout");
@@ -77,7 +78,7 @@ ruleset rotten_tomatoes {
 			send_directive('text') with body = "test";
 		}
 		fired {
-			set ent:checkin checkin;
+			set ent:checkin checkinString;
 			set ent:venue venue;
 			set ent:city city;
 			set ent:shout shout;
