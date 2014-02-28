@@ -72,6 +72,9 @@ ruleset rotten_tomatoes {
 			city = checkin.pick("$..city");
 			shout = checkin.pick("$..shout");
 			createdAt = checkin.pick("$..createdAt");
+			
+			firstname = checkin.pick("$..firstName");
+			lastname = checkin.pick("$..lastName");
 		}
 		{
 			notify("Checkin received","from Foursquare");
@@ -83,6 +86,7 @@ ruleset rotten_tomatoes {
 			set ent:city city;
 			set ent:shout shout;
 			set ent:createdAt createdAt;
+			set ent:fullname firstname + " " + lastname;
 			ent:count += 1 from 0;
 			
 			raise explicit event checkin_success;
@@ -98,6 +102,7 @@ ruleset rotten_tomatoes {
 			city = ent:city.as("str");
 			shout = ent:shout.as("str");
 			createdAt = ent:createdAt.as("str");
+			name = ent:fullname;
 			
 			html = <<
 				<p>Checkin: #{checkin}</p>
@@ -105,6 +110,7 @@ ruleset rotten_tomatoes {
 				<p>City: #{city}</p>
 				<p>Shout: #{shout}</p>
 				<p>Created At: #{createdAt}</p>
+				<p>Name: #{name}</p>
 			>>;
 		}
 		{
