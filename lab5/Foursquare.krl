@@ -104,7 +104,7 @@ ruleset rotten_tomatoes {
 			>>;
 		}
 		{
-			notify("Foursquare Venue:", stringValue);
+//			notify("Foursquare Venue:", stringValue);
 			replace_html("#checkinInfo", html);
 		}
 	}
