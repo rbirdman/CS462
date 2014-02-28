@@ -2,7 +2,7 @@ ruleset rotten_tomatoes {
 	meta {
 		name "Foursquare Checkins"
 		description <<
-			Hello World
+			Foursquare Checkin lab
 			>>
 		author "Ryan Bird"
 		logging on
@@ -53,7 +53,7 @@ ruleset rotten_tomatoes {
 		}
 		{
 			SquareTag:inject_styling();
-			CloudRain:createLoadPanel("Hello World", {}, my_html);
+			CloudRain:createLoadPanel("Foursquare", {}, my_html);
 		
 			replace_html('#main', my_html);
 			append('#main', data_html);
