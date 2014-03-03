@@ -105,7 +105,7 @@ ruleset rotten_tomatoes {
 		
 		pre {
 			checkin = ent:checkin.as("str");
-			venue = ent:venue.as("str");
+			venue = ent:venue.pick("$.name").as("str");
 			city = ent:city.as("str");
 			shout = ent:shout.as("str");
 			createdAt = ent:createdAt.as("str");
