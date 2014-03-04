@@ -25,7 +25,7 @@ ruleset location_data {
 		select when pds new_location_data
 		
 		if ent:locationData.isnull() then {
-			noop();
+			send_directive('text') with body = "Setting variable";
 		}
 		fired {
 			set ent:locationData {}
@@ -40,7 +40,7 @@ ruleset location_data {
 			value = event:attr("value");
 		}
 		{
-			noop();
+			send_directive('text') with body = "storing in variable";
 		}
 		always {
 			set ent:locationData ent:locationData.put([key],value);
