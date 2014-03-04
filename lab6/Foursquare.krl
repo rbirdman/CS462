@@ -8,6 +8,8 @@ ruleset Foursquare {
 		logging on
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
+		
+		use module b502807x12 alias Examine
 	}
 	dispatch {
 	}

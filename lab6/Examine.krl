@@ -9,7 +9,7 @@ ruleset examine_location {
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
 		
-		//use module [] alias location_data
+		use module b502807x13 alias location_data
 	}
 	dispatch {
 	}
@@ -20,10 +20,10 @@ ruleset examine_location {
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
-			value = location_data:get_location_data("");
+			value = location_data:get_location_data("fs_checkin");
 		}
 		{
-			noop();
+			notify("show_fs_location", "function called");
 		}
 	}
 	
