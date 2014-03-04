@@ -119,10 +119,12 @@ ruleset Foursquare {
 		select when web cloudAppSelected
 		pre {
 			value = Location:get_location_data("fs_checkin");
+			locationIsRunning = Location:get_constant_value;
 		}
 		{
 			notify("Foursquare:show_fs_location", "function called");
 			notify("Value:", value.as("str")) with sticky = true;
+			notify("Constant:", locationIsRunning);
 			notify("Location Ruleset fired:", ent:locationData.isnull().as("str"));
 		}
 	}

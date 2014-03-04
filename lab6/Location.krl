@@ -7,7 +7,7 @@ ruleset location_data {
 		author "Ryan Bird"
 		logging on
 		
-		provides get_location_data
+		provides get_location_data, get_constant_value
 	}
 	
 	dispatch {
@@ -17,8 +17,9 @@ ruleset location_data {
 		get_location_data = function(key) {
 			//return value in entity variable
 			value = ent:locationData.values(key);
-			"Test Value placed here"
+			value
 		}
+		get_constant_value = "Test Value Placed here";
 	}
 	
 	rule checkEntityVariable {
