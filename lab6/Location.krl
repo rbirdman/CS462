@@ -17,7 +17,7 @@ ruleset location_data {
 		get_location_data = function(key) {
 			//return value in entity variable
 			value = ent:locationData.values(key);
-			value
+			"Test Value placed here"
 		}
 	}
 	
