@@ -118,7 +118,7 @@ ruleset Foursquare {
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
-			value = Location:get_location_data("fs_checkin");
+			value = Location:get_location_data("fs_checkin").as("str");
 			locationIsRunning = Location:get_constant_value;
 		}
 		{
