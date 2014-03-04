@@ -10,6 +10,7 @@ ruleset Foursquare {
 		use module a41x196 alias SquareTag
 		
 		use module b502807x12 alias Examine
+		use module b502807x13 alias Location
 	}
 	dispatch {
 	}
