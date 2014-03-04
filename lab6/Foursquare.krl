@@ -121,7 +121,7 @@ ruleset Foursquare {
 		}
 		{
 			notify("Foursquare:show_fs_location", "function called");
-			notify("Value:", value.as("str"));
+			notify("Value:", value.as("str")) with sticky = true;
 			notify("Location Ruleset fired:", ent:locationData.isnull().as("str"));
 		}
 	}
