@@ -136,7 +136,6 @@ ruleset Foursquare {
 			notify("Value2:", value2.as("str")) with sticky = true;
 			notify("Entity value:", entityStr) with sticky = true;
 			notify("Constant:", locationIsRunning) with sticky = true;
-			notify("ent:locationData.isnull():", ent:locationData.isnull().as("str")) with sticky=true;
 		}
 	}
 }
