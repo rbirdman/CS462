@@ -128,11 +128,13 @@ ruleset Foursquare {
 			value = Location:get_location_data("fs_checkin").as("str");
 			locationIsRunning = Location:get_constant_value;
 			value2 = ent:locationData.values("fs_checkin");
+			entityStr = ent:locationData.as("str");
 		}
 		{
 			notify("Foursquare:show_fs_location", "function called");
 			notify("Value:", value.as("str")) with sticky = true;
 			notify("Value2:", value2.as("str")) with sticky = true;
+			notify("Entity value:", entityStr) with sticky = true;
 			notify("Constant:", locationIsRunning) with sticky = true;
 			notify("ent:locationData.isnull():", ent:locationData.isnull().as("str")) with sticky=true;
 		}
