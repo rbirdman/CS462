@@ -22,7 +22,7 @@ ruleset location_data {
 		get_constant_value = "Test Value Placed here";
 	}
 	
-	rule checkEntityVariable {
+	rule checkEntityVariable is active {
 		select when pds new_location_data
 		
 		if ent:locationData.isnull() then {

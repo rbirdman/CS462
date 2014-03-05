@@ -20,7 +20,7 @@ ruleset examine_location {
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
-			value = location_data:get_location_data("fs_checkin");
+//			value = location_data:get_location_data("fs_checkin");
 		}
 		{
 			notify("show_fs_location", "function called");
