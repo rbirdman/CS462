@@ -24,7 +24,7 @@ ruleset examine_location {
 			value = location_data:get_location_data("fs_checkin");
 		}
 		{
-			notify("show_fs_location", "function called");
+			notify("Examine:show_fs_location", "function called") with sticky=true;
 		}
 	}
 	
