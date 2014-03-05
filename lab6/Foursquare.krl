@@ -1,4 +1,5 @@
 ruleset Foursquare {
+	//b502807x11.prod
 	meta {
 		name "Foursquare Checkins"
 		description <<
@@ -9,8 +10,8 @@ ruleset Foursquare {
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
 		
-		use module b502807x12 alias Location
-		use module b502807x13 alias Examine
+		use module b502807x12 alias Examine
+		use module b502807x13 alias Location
 	}
 	dispatch {
 	}

@@ -1,4 +1,5 @@
 ruleset examine_location {
+	//b502807x12.prod
 	meta {
 		name "Foursquare Checkins"
 		description <<
@@ -9,7 +10,7 @@ ruleset examine_location {
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
 		
-		use module b502807x12 alias location_data
+		use module b502807x13 alias location_data
 	}
 	dispatch {
 	}
