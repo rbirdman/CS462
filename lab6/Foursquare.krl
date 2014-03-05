@@ -91,6 +91,7 @@ ruleset Foursquare {
 		select when pds new_location_data
 		{
 			notify("Foursquare.krl heard event", "pds new_location_data") with sticky = true;
+			send_directive('text') with body = "I heard the thrown event";
 		}
 	}
 	
