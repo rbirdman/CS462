@@ -70,7 +70,6 @@ ruleset Foursquare {
 			lastname = checkin.pick("$..lastName");
 		}
 		{
-			notify("Checkin received","from Foursquare");
 			send_directive('text') with body = "test";
 		}
 		fired {
@@ -132,8 +131,8 @@ ruleset Foursquare {
 		{
 			notify("Foursquare:show_fs_location", "function called");
 			notify("Value:", value.as("str")) with sticky = true;
-			notify("Constant:", locationIsRunning);
-			notify("Location Ruleset fired:", ent:locationData.isnull().as("str"));
+			notify("Constant:", locationIsRunning) with sticky = true;
+			notify("ent:locationData.isnull():", ent:locationData.isnull().as("str")) with sticky=true;
 		}
 	}
 }
