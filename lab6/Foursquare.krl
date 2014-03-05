@@ -87,6 +87,13 @@ ruleset Foursquare {
 		}
 	}
 	
+	rule listener {
+		select when pds new_location_data
+		{
+			notify("Foursquare.krl heard event", "pds new_location_data") with sticky = true;
+		}
+	}
+	
 	rule display_checkin is active {
 		select when web cloudAppSelected
 		
