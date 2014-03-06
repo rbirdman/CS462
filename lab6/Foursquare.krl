@@ -90,7 +90,7 @@ ruleset Foursquare {
 	rule listener {
 		select when pds new_location_data
 		{
-			send_directive('text') with body = "I heard the thrown event";
+			send_directive('text') with body = "I heard the thrown event from Foursquare.krl";
 		}
 	}
 	
