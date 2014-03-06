@@ -8,7 +8,7 @@ ruleset location_data {
 		author "Ryan Bird"
 		logging on
 		
-		provides get_location_data, get_constant_value
+		provides get_location_data, get_constant_value, print
 	}
 	
 	dispatch {
@@ -21,6 +21,10 @@ ruleset location_data {
 			value
 		}
 		get_constant_value = "Test Value Placed here";
+		
+		print = function(key) {
+			ent:locationData.as("str")
+		}
 	}
 	
 	rule checkEntityVariable is active {

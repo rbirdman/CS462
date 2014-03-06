@@ -42,6 +42,7 @@ ruleset examine_location {
 		select when web cloudAppSelected
 		pre {
 			value = location_data:get_location_data("fs_checkin");
+			storageData = location_data:print();
 			valueStr = value.as("str");
 			
 			venueName = checkin.pick("$.venue.name");
@@ -58,7 +59,8 @@ ruleset examine_location {
 		}
 		{
 			notify("Examine:show_fs_location", "function called") with sticky=true;
-			notify("Value data:", valueStr);
+			replace_html("#storage", "<p>" + storageData + "</p>");
+			replace_html("#valueData", "<p>" + valueStr + "</p>");
 			replace_html("#checkinInfo", html);
 		}
 	}
