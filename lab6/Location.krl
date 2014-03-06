@@ -32,6 +32,7 @@ ruleset location_data {
 		pre {
 			my_html = <<
 				<div id="main">Storage Info:</div>
+				<div id="output"/>
 			>>;
 			
 			data = print();
@@ -45,7 +46,7 @@ ruleset location_data {
 			CloudRain:createLoadPanel("Foursquare", my_html);
 			
 			notify("I am running", "from display mode");
-			replace_html('#main', my_html);
+			replace_html('#output', my_html);
 		}
 	}
 	
