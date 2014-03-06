@@ -34,12 +34,6 @@ ruleset location_data {
 				<div id="main">Storage Info:</div>
 				<div id="output"/>
 			>>;
-			
-			data = print();
-			
-			data_html = <<
-					<div id="storageInfo"><p>#{data}</p></div>
-				>>;
 		}
 		{
 			SquareTag:inject_styling();
@@ -47,7 +41,21 @@ ruleset location_data {
 			
 			notify("I am running", "from display mode");
 			replace_html('#main', my_html);
-			append('#main', data_html);
+			
+		}
+	}
+	
+	rule printData is active {
+		select when web cloudAppSelected
+		pre {
+			data = print();
+			
+			data_html = <<
+					<div id="storageInfo"><p>#{data}</p></div>
+				>>;
+		}
+		{
+			replace_inner('#output', data_html);
 		}
 	}
 	
