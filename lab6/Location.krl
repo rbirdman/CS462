@@ -19,13 +19,13 @@ ruleset location_data {
 	global {
 		get_location_data = function(key) {
 			//return value in entity variable
-			value = ent:locationData.values([key]);
+			value = app:locationData.values([key]);
 			value
 		}
 		get_constant_value = "Test Value Placed here";
 		
 		print = function(key) {
-			ent:locationData.as("str")
+			app:locationData.as("str")
 		}
 	}
 	
