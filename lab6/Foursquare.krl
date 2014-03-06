@@ -70,7 +70,7 @@ ruleset Foursquare {
 			lastname = checkin.pick("$..lastName");
 		}
 		{
-			send_directive('text') with body = "test";
+			noop();
 		}
 		fired {
 			set ent:checkin checkinString;
