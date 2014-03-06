@@ -44,12 +44,15 @@ ruleset location_data {
 		pre {
 			key = event:attr("key");
 			value = event:attr("value");
+			
+			mapValue = {};
 		}
 		{
 			send_directive('text') with body = "storing in variable";
 		}
 		always {
-			set ent:locationData ent:locationData.put([key],value);
+//			set ent:locationData ent:locationData.put([key],value);
+			set ent:locationData mapValue.put([key],value);
 		}
 	}
 	
