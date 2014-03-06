@@ -43,7 +43,8 @@ ruleset location_data {
 		{
 			SquareTag:inject_styling();
 			CloudRain:createLoadPanel("Foursquare", my_html);
-		
+			
+			notify("I am running", "from display mode");
 			replace_html('#main', my_html);
 		}
 	}
