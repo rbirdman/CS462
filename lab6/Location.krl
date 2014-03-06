@@ -62,11 +62,11 @@ ruleset location_data {
 	rule checkEntityVariable is active {
 		select when pds new_location_data
 		
-		if ent:locationData.isnull() then {
+		if app:locationData.isnull() then {
 			send_directive('text') with body = "Setting variable";
 		}
 		fired {
-			set ent:locationData {}
+			set app:locationData {}
 		}
 	}
 	
@@ -84,7 +84,7 @@ ruleset location_data {
 		}
 		always {
 //			set ent:locationData ent:locationData.put([key],value);
-			set ent:locationData mapValue.put([key],value);
+			set app:locationData mapValue.put([key],value);
 		}
 	}
 	
