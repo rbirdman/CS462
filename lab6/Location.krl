@@ -7,6 +7,8 @@ ruleset location_data {
 			>>
 		author "Ryan Bird"
 		logging on
+		use module a169x701 alias CloudRain
+		use module a41x196 alias SquareTag
 		
 		provides get_location_data, get_constant_value, print
 	}
@@ -56,7 +58,7 @@ ruleset location_data {
 				>>;
 		}
 		{
-			replace_inner('#output', data_html);
+			append('#main', data_html);
 		}
 	}
 	
