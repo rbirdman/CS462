@@ -59,17 +59,6 @@ ruleset location_data {
 		}
 	}
 	
-	rule checkEntityVariable is active {
-		select when pds new_location_data
-		
-		if app:locationData.isnull() then {
-			send_directive('text') with body = "Setting variable";
-		}
-		fired {
-			set app:locationData {}
-		}
-	}
-	
 	rule add_location_item is active {
 		select when pds new_location_data
 		
