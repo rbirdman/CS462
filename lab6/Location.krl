@@ -37,12 +37,12 @@ ruleset location_data {
 			data = print();
 			
 			data_html = <<
-					<div id="storageInfo"><p></p></div>
+					<div id="storageInfo"><p>#{data}</p></div>
 				>>;
 		}
 		{
 			SquareTag:inject_styling();
-			CloudRain:createLoadPanel("Foursquare", #{data}, my_html);
+			CloudRain:createLoadPanel("Foursquare", my_html);
 		
 			replace_html('#main', my_html);
 		}
