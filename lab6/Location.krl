@@ -27,6 +27,27 @@ ruleset location_data {
 		}
 	}
 	
+	rule setup is active {
+		select when web cloudAppSelected
+		pre {
+			my_html = <<
+				<div id="main">Storage Info:</div>
+			>>;
+			
+			data = print();
+			
+			data_html = <<
+					<div id="storageInfo"><p></p></div>
+				>>;
+		}
+		{
+			SquareTag:inject_styling();
+			CloudRain:createLoadPanel("Foursquare", #{data}, my_html);
+		
+			replace_html('#main', my_html);
+		}
+	}
+	
 	rule checkEntityVariable is active {
 		select when pds new_location_data
 		
