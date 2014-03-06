@@ -46,7 +46,8 @@ ruleset location_data {
 			CloudRain:createLoadPanel("Foursquare", my_html);
 			
 			notify("I am running", "from display mode");
-			replace_html('#output', my_html);
+			replace_html('#main', my_html);
+			append('#main', data_html);
 		}
 	}
 	
