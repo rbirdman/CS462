@@ -58,6 +58,7 @@ ruleset examine_location {
 		}
 		{
 			notify("Examine:show_fs_location", "function called") with sticky=true;
+			notify("Value data:", valueStr);
 			replace_html("#checkinInfo", html);
 		}
 	}
