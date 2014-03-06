@@ -46,8 +46,7 @@ ruleset location_data {
 	}
 	
 	rule printData is active {
-//		select when web cloudAppSelected
-		select when foursquare login
+		select when web cloudAppSelected
 		pre {
 			data = print();
 			
