@@ -80,8 +80,7 @@ ruleset location_data {
 			mapValue = {};
 		}
 		{
-			send_directive('text') with key = key
-									and value = value;
+			send_directive('text') with key = key and value = value;
 		}
 		always {
 //			set ent:locationData ent:locationData.put([key],value);
