@@ -43,6 +43,7 @@ ruleset examine_location {
 		pre {
 			value = location_data:get_location_data("fs_checkin");
 			storageData = location_data:print();
+			constant = location_data:get_constant_value;
 			valueStr = value.as("str");
 			
 			venueName = checkin.pick("$.venue.name");
@@ -58,6 +59,8 @@ ruleset examine_location {
 			>>;
 		}
 		{
+			notify("Const:", constant) with sticky=true;
+			notify("storage", storageData) with sticky=true;
 			notify("Examine:show_fs_location", "function called") with sticky=true;
 			replace_html("#storage", "<p>" + storageData + "</p>");
 			replace_html("#valueData", "<p>" + valueStr + "</p>");
