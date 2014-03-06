@@ -18,13 +18,47 @@ ruleset examine_location {
 	global {
 	}
 	
+	rule setup is active {
+		select when web cloudAppSelected
+		pre {
+			my_html = <<
+				<div id="main">Checkin Info:</div>
+			>>;
+			
+			data_html = <<
+					<div id="checkinInfo"/>
+				>>;
+		}
+		{
+			SquareTag:inject_styling();
+			CloudRain:createLoadPanel("Foursquare", {}, my_html);
+		
+			replace_html('#main', my_html);
+//			append('#main', data_html);
+		}
+	}
+	
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
 			value = location_data:get_location_data("fs_checkin");
+			valueStr = value.as("str");
+			
+			venueName = checkin.pick("$.venue.name");
+			city = checkin.pick("$.city");
+			shout = checkin.pick("$.shout");
+			createdAt = checkin.pick("$.createdAt");
+			
+			html = <<
+				<p>Venue: #{venueName}</p>
+				<p>City: #{city}</p>
+				<p>Shout: #{shout}</p>
+				<p>Created At: #{createdAt}</p>
+			>>;
 		}
 		{
 			notify("Examine:show_fs_location", "function called") with sticky=true;
+			replace_html("#checkinInfo", html);
 		}
 	}
 	
