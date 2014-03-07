@@ -59,12 +59,8 @@ ruleset examine_location {
 		}
 		{
 			notify("Const:", constant) with sticky=true;
-			notify("storage", storageData) with sticky=true;
-			notify("Examine:show_fs_location", "function called") with sticky=true;
-			//append('#main', data_html);
-			append("#main", "<p>" + storageData + "</p>");
-			append("#valueData", "<p>" + valueStr + "</p>");
-			append("#checkinInfo", html);
+			append("#main", "<p>" + valueStr + "</p>");
+			append("#main", html);
 		}
 	}
 	
