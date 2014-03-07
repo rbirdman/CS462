@@ -43,6 +43,7 @@ ruleset examine_location {
 		pre {
 			value = location_data:get_location_data("fs_checkin");
 			constant = location_data:get_constant_value;
+			valueType = value.typeof();
 			valueStr = value.as("str");
 			
 			venueName = checkin.pick("$.venue.name");
@@ -59,7 +60,7 @@ ruleset examine_location {
 		}
 		{
 			notify("Const:", constant) with sticky=true;
-			append("#main", "<p>" + valueStr + "</p>");
+			append("#main", "<p> Type:" + valueType + "<br>" + valueStr + "</p>");
 			append("#main", html);
 		}
 	}
