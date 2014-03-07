@@ -49,7 +49,7 @@ ruleset location_data {
 		select when web cloudAppSelected
 		pre {
 			dataType = app:locationData.typeof();
-			dataStr = app:locationData.as("str");
+			dataStr = app:locationData.encode();
 			
 			data_html = <<
 					<div id="storageInfo"><p>Type: #{dataType}<br>#{dataStr}</p></div>
