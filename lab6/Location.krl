@@ -19,8 +19,9 @@ ruleset location_data {
 	global {
 		get_location_data = function(key) {
 			//return value in entity variable
-			value = app:locationData.values([key]);
-			value
+//			value = app:locationData.values([key]);
+//			value
+			app:locationData.pick("$.." + key)
 		}
 		get_constant_value = "Test Value Placed here";
 		
