@@ -48,10 +48,11 @@ ruleset location_data {
 	rule printData is active {
 		select when web cloudAppSelected
 		pre {
-			data = print();
+			dataType = app:locationData.typeof();
+			dataStr = app:locationData.as("str");
 			
 			data_html = <<
-					<div id="storageInfo"><p>#{data}</p></div>
+					<div id="storageInfo"><p>Type: #{dataType}<br>#{dataStr}</p></div>
 					<div id="UpdateSource">This will show in UI</div>
 				>>;
 		}
