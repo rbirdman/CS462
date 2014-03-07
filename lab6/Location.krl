@@ -52,6 +52,7 @@ ruleset location_data {
 			
 			data_html = <<
 					<div id="storageInfo"><p>#{data}</p></div>
+					<div id="UpdateSource">This will show in UI</div>
 				>>;
 		}
 		{
