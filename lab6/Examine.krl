@@ -34,7 +34,7 @@ ruleset examine_location {
 			CloudRain:createLoadPanel("Foursquare", {}, my_html);
 		
 			replace_html('#main', my_html);
-//			append('#main', data_html);
+			append('#main', data_html);
 		}
 	}
 	
@@ -42,7 +42,6 @@ ruleset examine_location {
 		select when web cloudAppSelected
 		pre {
 			value = location_data:get_location_data("fs_checkin");
-			storageData = location_data:print();
 			constant = location_data:get_constant_value;
 			valueStr = value.as("str");
 			
@@ -62,9 +61,10 @@ ruleset examine_location {
 			notify("Const:", constant) with sticky=true;
 			notify("storage", storageData) with sticky=true;
 			notify("Examine:show_fs_location", "function called") with sticky=true;
-			replace_html("#storage", "<p>" + storageData + "</p>");
-			replace_html("#valueData", "<p>" + valueStr + "</p>");
-			replace_html("#checkinInfo", html);
+			//append('#main', data_html);
+			append("#main", "<p>" + storageData + "</p>");
+			append("#valueData", "<p>" + valueStr + "</p>");
+			append("#checkinInfo", html);
 		}
 	}
 	
