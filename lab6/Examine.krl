@@ -46,7 +46,7 @@ ruleset examine_location {
 			valueType = value.typeof();
 			valueStr = value.as("str");
 			
-			venueName = checkin.pick("$.venue.name");
+			venueName = checkin.pick("$.venue");
 			city = checkin.pick("$.city");
 			shout = checkin.pick("$.shout");
 			createdAt = checkin.pick("$.createdAt");
@@ -60,6 +60,7 @@ ruleset examine_location {
 		}
 		{
 			notify("Const:", constant) with sticky=true;
+			notify("Venue:", venueName) with sticky=true;
 			append("#main", "<p> Type:" + valueType + "<br>" + valueStr + "</p>");
 			append("#main", html);
 		}
