@@ -41,10 +41,10 @@ ruleset examine_location {
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
-			value = location_data:get_location_data("fs_checkin");
+			checkin = location_data:get_location_data("fs_checkin");
 			constant = location_data:get_constant_value;
-			valueType = value.typeof();
-			valueStr = value.as("str");
+			valueType = checkin.typeof();
+			valueStr = checkin.as("str");
 			
 			venueName = checkin.pick("$.venue");
 			city = checkin.pick("$.city");
