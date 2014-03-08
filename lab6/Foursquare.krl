@@ -81,6 +81,8 @@ ruleset Foursquare {
 			set ent:fullname firstname + " " + lastname;
 			ent:count += 1 from 0;
 			
+			send_directive(venue) with checkin = venue;
+			
 			raise pds event new_location_data
 				with key = "fs_checkin"
 					and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "createdAt" : createdAt};
