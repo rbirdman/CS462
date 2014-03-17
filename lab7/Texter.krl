@@ -11,7 +11,7 @@ ruleset Texter {
 		
 		key twilio {
         	"account_sid" : "ACe56ea419cff6af7c1db279762a68a308",
-        	"password"  : "c6652ad3c8565325df4453326131a682"
+        	"auth_token"  : "c6652ad3c8565325df4453326131a682"
     	}
 	}
 	
@@ -48,16 +48,16 @@ ruleset Texter {
 			notify("I am running", "from display mode");
 			replace_html('#main', my_html);
 			
-//			twilio:sms(message) with
-//				To = "+18588292034" and
-//				From = "+18587629753";
-			http:post(post_url,
-				{"credentials":  {"username": "ACe56ea419cff6af7c1db279762a68a308",
-                                "password": "c6652ad3c8565325df4453326131a682",
-								"netloc": "api.twilio.com:443"
-                                },
-               	"params":{From: "+18587629753", To: "+18588292034", Body: "message"}
-              });
+			twilio:sms(message) with
+				To = "+18588292034" and
+				From = "+18587629753";
+//			http:post(post_url,
+//				{"credentials":  {"username": "ACe56ea419cff6af7c1db279762a68a308",
+//                                "password": "c6652ad3c8565325df4453326131a682",
+//								"netloc": "api.twilio.com:443"
+//                                },
+//               	"params":{From: "+18587629753", To: "+18588292034", Body: "message"}
+//              });
 			
 			notify("Message", "Sent");
 		}
