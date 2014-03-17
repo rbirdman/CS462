@@ -10,7 +10,7 @@ ruleset location_data {
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
 		
-		provides get_location_data, get_constant_value, print
+		provides get_location_data, get_constant_value, print, latitude, longitude
 	}
 	
 	dispatch {
@@ -18,12 +18,11 @@ ruleset location_data {
 	
 	global {
 		get_location_data = function(key) {
-			//return value in entity variable
-//			value = app:locationData.values([key]);
-//			value
 			app:locationData.pick("$.." + key)
 		}
 		get_constant_value = "Test Value Placed here";
+		latitude = 0;
+		longitude = 0;
 		
 		print = function(key) {
 			app:locationData.as("str")
@@ -69,16 +68,24 @@ ruleset location_data {
 			key = event:attr("key");
 			value = event:attr("value");
 			
+			lat = value.pick("$.lat");
+			long = value.pick("$.long");
+			
 			mapValue = {};
 		}
 		{
-//			send_directive('text') with key = key and value = value;
+			latitude = lat;
+			longitude = long;
 			send_directive(key) with location = value;
 		}
 		always {
 //			set ent:locationData ent:locationData.put([key],value);
 			set app:locationData mapValue.put([key],value);
+//			set app:latitude lat;
+//			set app:longitude long;
 		}
 	}
 	
+	//A899BB34-AAE8-11E3-A993-F2B6EFAFB119
+	//https://cs.kobj.net/sky/event/A899BB34-AAE8-11E3-A993-F2B6EFAFB119/92673593271/location/current?lat=500&long=500
 }

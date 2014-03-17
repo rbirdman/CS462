@@ -66,6 +66,9 @@ ruleset Foursquare {
 			shout = checkin.pick("$..shout");
 			createdAt = checkin.pick("$..createdAt");
 			
+			lat = venue.pick("$.location.lat");
+			long = venue.pick("$.location.lng");
+			
 			firstname = checkin.pick("$..firstName");
 			lastname = checkin.pick("$..lastName");
 		}
@@ -83,7 +86,7 @@ ruleset Foursquare {
 			
 			raise pds event new_location_data
 				with key = "fs_checkin"
-					and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "createdAt" : createdAt};
+					and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "createdAt" : createdAt, "lat": lat, "long": long};
 		}
 	}
 	
