@@ -27,7 +27,7 @@ ruleset Texter {
 		}
 	}
 	
-	rule nearby is active {
+	rule nearby_Visual is active {
 		select when web cloudAppSelected
 		pre {
 			message = "Pass off the lab, plz";
@@ -46,5 +46,4 @@ ruleset Texter {
 				to = "18588292034";
 		}
 	}
-	
 }

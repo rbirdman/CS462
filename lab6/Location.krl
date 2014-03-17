@@ -74,8 +74,8 @@ ruleset location_data {
 			mapValue = {};
 		}
 		{
-			latitude = lat;
-			longitude = long;
+//			latitude = lat;
+//			longitude = long;
 			send_directive(key) with location = value;
 		}
 		always {
