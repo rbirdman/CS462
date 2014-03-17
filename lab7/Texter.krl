@@ -8,6 +8,11 @@ ruleset Texter {
 		logging on
 		use module a169x701 alias CloudRain
 		use module a41x196 alias SquareTag
+		
+		key twilio {
+        	"account_sid" : "ACe56ea419cff6af7c1db279762a68a308",
+        	"auth_token"  : "c6652ad3c8565325df4453326131a682"
+    	}
 	}
 	
 	dispatch {
@@ -43,8 +48,8 @@ ruleset Texter {
 			replace_html('#main', my_html);
 			
 			twilio:sms(message) with
-				to = "18588292034"and
-				from = "18588292034";
+				to = "18588292034";
+			
 			notify("Message", "Sent");
 		}
 	}
