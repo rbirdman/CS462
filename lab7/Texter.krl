@@ -10,7 +10,7 @@ ruleset Texter {
 		use module a41x196 alias SquareTag
 		
 		key twilio {
-        	"account_sid" : "ACe56ea419cff6af7c1db279762a68a308",
+        	"username" : "ACe56ea419cff6af7c1db279762a68a308",
         	"password"  : "c6652ad3c8565325df4453326131a682"
     	}
 	}
