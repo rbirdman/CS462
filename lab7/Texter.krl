@@ -48,7 +48,7 @@ ruleset Texter {
 			replace_html('#main', my_html);
 			
 			twilio:sms(message) with
-				To = "18588292034";
+				To = "+18588292034";
 			
 			notify("Message", "Sent");
 		}
