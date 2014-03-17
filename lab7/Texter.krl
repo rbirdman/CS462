@@ -10,7 +10,7 @@ ruleset Texter {
 		use module a41x196 alias SquareTag
 		
 		key twilio {
-        	"user" : "ACe56ea419cff6af7c1db279762a68a308",
+        	"account_sid" : "ACe56ea419cff6af7c1db279762a68a308",
         	"password"  : "c6652ad3c8565325df4453326131a682"
     	}
 	}
@@ -50,7 +50,9 @@ ruleset Texter {
 			
 			twilio:sms(message) with
 				To = "+18588292034" and
-				From = "+18587629753";
+				From = "+18587629753" and
+				username = "ACe56ea419cff6af7c1db279762a68a308" and
+				password = "c6652ad3c8565325df4453326131a682";
 //			http:post(post_url,
 //				{"credentials":  {"username": "ACe56ea419cff6af7c1db279762a68a308",
 //                                "password": "c6652ad3c8565325df4453326131a682"
