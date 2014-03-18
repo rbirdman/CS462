@@ -18,6 +18,12 @@ ruleset Nearby {
 	global {
 	}
 	
+	rule listener is active {
+		select when location current_loc
+		send_directive("Listening");
+		
+	}
+	
 	//https://cs.kobj.net/sky/event/A899BB34-AAE8-11E3-A993-F2B6EFAFB119/92673593271/location/current?lat=500&long=500
 	rule nearby is active {
 		select when location current_loc
@@ -32,16 +38,13 @@ ruleset Nearby {
 		}
 		
 		if distance < 5 then {
-			noop();
+			send_directive("Calculating");
 		}
 		fired {
 			raise explicit event location_nearby
 				with distance = distance;
 			set ent:last_lat lat;
 			set ent:last_long long;
-		}
-		always {
-			send_directive("Calculating")
 		}
 		else {
 			raise explicit event location_far;
