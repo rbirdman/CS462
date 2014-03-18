@@ -16,6 +16,8 @@ ruleset Nearby {
 	}
 	
 	global {
+		r90   = math:pi()/2;
+		rEk = 6378;
 	}
 	
 	rule listener is active {
@@ -28,7 +30,7 @@ ruleset Nearby {
 			x = lat - Location:latitude();
 			y = long - Location:longitude();
 			
-			distance = math:sqrt(x*x + y * y)
+			distance = math:great_circle_distance(long,r90 - lat, y,r90 - x, rEk);
 		}
 		{
 			send_directive("Listening") with
@@ -49,10 +51,12 @@ ruleset Nearby {
 			x = lat - Location:latitude();
 			y = long - Location:longitude();
 			
-			distance = math:sqrt(x*x + y * y)
+//			distance = math:sqrt(x*x + y * y);
+			distance = math:great_circle_distance(long,r90 - lat, y,r90 - x, rEk);
 		}
 		
-		if distance < 5 then {
+		//within 10 kilometers
+		if distance < 10 then {
 			send_directive("Calculating");
 		}
 		fired {
