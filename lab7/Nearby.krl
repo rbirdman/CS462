@@ -30,7 +30,11 @@ ruleset Nearby {
 			x = lat - Location:latitude();
 			y = long - Location:longitude();
 			
-			distance = math:great_circle_distance(long,r90 - lat, Location:longitude(),r90 - Location:latitude(), rEk);
+			rlata = math:deg2rad(lat);
+			rlnga = math:deg2rad(long);
+			rlatb = math:deg2rad(Location:latitude());
+			rlngb = math:deg2rad(Location:longitude());
+			distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEk);
 		}
 		{
 			send_directive("Listening") with
@@ -52,7 +56,11 @@ ruleset Nearby {
 			y = long - Location:longitude();
 			
 //			distance = math:sqrt(x*x + y * y);
-			distance = math:great_circle_distance(long,r90 - lat, Location:longitude(),r90 - Location:latitude(), rEk);
+			rlata = math:deg2rad(lat);
+			rlnga = math:deg2rad(long);
+			rlatb = math:deg2rad(Location:latitude());
+			rlngb = math:deg2rad(Location:longitude());
+			distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEk);
 		}
 		
 		//within 10 kilometers
