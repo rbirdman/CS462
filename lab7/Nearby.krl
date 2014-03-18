@@ -32,13 +32,16 @@ ruleset Nearby {
 		}
 		
 		if distance < 5 then {
-			send_directive("Calculating");
+			noop();
 		}
 		fired {
 			raise explicit event location_nearby
 				with distance = distance;
 			set ent:last_lat lat;
 			set ent:last_long long;
+		}
+		always {
+			send_directive("Calculating")
 		}
 		else {
 			raise explicit event location_far;
