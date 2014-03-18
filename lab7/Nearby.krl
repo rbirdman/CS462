@@ -26,8 +26,8 @@ ruleset Nearby {
 			lat = event:attr("lat");
 			long = event:attr("long");
 			
-			x = lat - Location:latitude;
-			y = long - Location:longitude;
+			x = lat - Location:latitude();
+			y = long - Location:longitude();
 		}
 		
 		if math:sqrt(x*x + y * y) < 5 then {

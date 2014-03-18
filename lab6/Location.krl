@@ -21,8 +21,13 @@ ruleset location_data {
 			app:locationData.pick("$.." + key)
 		}
 		get_constant_value = "Test Value Placed here";
-		latitude = 0;
-		longitude = 0;
+		latitude = function() {
+			ent:latitude
+		}
+		
+		longitude = function() {
+			ent:longitude
+		}
 		
 		print = function(key) {
 			app:locationData.as("str")
@@ -50,9 +55,11 @@ ruleset location_data {
 		pre {
 			dataType = app:locationData.typeof();
 			dataStr = app:locationData.encode();
+			locStr = longitude().as("str") + "–" + latitude().as("str");
 			
 			data_html = <<
 					<div id="storageInfo"><p>Type: #{dataType}<br>#{dataStr}</p></div>
+					<div id="locationInfo"><p>Location: #{locStr}</p></div>
 					<div id="UpdateSource">This will show in UI</div>
 				>>;
 		}
@@ -81,8 +88,8 @@ ruleset location_data {
 		always {
 //			set ent:locationData ent:locationData.put([key],value);
 			set app:locationData mapValue.put([key],value);
-//			set app:latitude lat;
-//			set app:longitude long;
+			set ent:latitude lat;
+			set ent:longitude long;
 		}
 	}
 	
