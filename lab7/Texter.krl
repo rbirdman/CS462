@@ -28,8 +28,7 @@ ruleset Texter {
 			message = "Pass off the lab, plz";
 		}
 		{
-			twilio:sms(message) with
-				to = "18588292034";
+			twilio:send_sms("+18588292034", "+18587629753", message);
 		}
 	}
 	
