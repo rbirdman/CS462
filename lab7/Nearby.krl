@@ -37,9 +37,25 @@ ruleset Nearby {
 		fired {
 			raise explicit event location_nearby
 				with distance = distance;
+			set ent:last_lat lat;
+			set ent:last_long long;
 		}
 		else {
 			raise explicit event location_far;
+		}
+	}
+	
+	rule display is active {
+		select when web cloudAppSelected
+		pre {
+			
+			my_html = <<
+					<div id="main">Last Location: #{ent:last_lat}:#{last_long}</div>
+				>>;
+		}
+		{
+			SquareTag:inject_styling();
+			CloudRain:createLoadPanel("Foursquare: Location", {}, my_html);
 		}
 	}
 	
