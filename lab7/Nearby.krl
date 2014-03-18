@@ -32,7 +32,7 @@ ruleset Nearby {
 		}
 		
 		if distance < 5 then {
-			noop();
+			send_directive();
 		}
 		fired {
 			raise explicit event location_nearby

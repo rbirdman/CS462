@@ -29,6 +29,7 @@ ruleset Texter {
 			message = "Pass off the lab, plz. Distance: " + distance.as("str");
 		}
 		{
+			send_directive();
 			twilio:send_sms("+18588292034", "+18587629753", message);
 		}
 	}
