@@ -20,7 +20,22 @@ ruleset Nearby {
 	
 	rule listener is active {
 		select when location current_loc
-		send_directive("Listening");
+		
+		pre {
+			lat = event:attr("lat");
+			long = event:attr("long");
+			
+			x = lat - Location:latitude();
+			y = long - Location:longitude();
+			
+			distance = math:sqrt(x*x + y * y)
+		}
+		{
+			send_directive("Listening") with
+				x = x and
+				y = y and
+				distance = distance;
+		}
 		
 	}
 	
