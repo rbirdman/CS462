@@ -50,7 +50,7 @@ ruleset Nearby {
 		pre {
 			
 			my_html = <<
-					<div id="main">Last Location: #{ent:last_lat}:#{last_long}</div>
+					<div id="main">Last Location: #{ent:last_lat}:#{ent:last_long}</div>
 				>>;
 		}
 		{
