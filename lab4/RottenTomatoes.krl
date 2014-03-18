@@ -17,7 +17,7 @@ ruleset rotten_tomatoes {
 		getMovieList = function() {
 						result = http:get("http://api.rottentomatoes.com/api/public/v1.0.json",
 								{"apikey":key});
-						body = result.pick("$.content");;
+						body = result.pick("$.content");
 						body
 					}
 		//http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
