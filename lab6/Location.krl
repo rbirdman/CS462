@@ -55,7 +55,7 @@ ruleset location_data {
 		pre {
 			dataType = app:locationData.typeof();
 			dataStr = app:locationData.encode();
-			locStr = longitude().as("str") + "–" + latitude().as("str");
+			locStr = longitude().as("str") + ":" + latitude().as("str");
 			
 			data_html = <<
 					<div id="storageInfo"><p>Type: #{dataType}<br>#{dataStr}</p></div>
