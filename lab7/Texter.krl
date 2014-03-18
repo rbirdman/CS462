@@ -25,7 +25,8 @@ ruleset Texter {
 	rule nearby is active {
 		select when explicit location_nearby
 		pre {
-			message = "Pass off the lab, plz";
+			distance = event:attr("distance");
+			message = "Pass off the lab, plz. Distance: " + distance.as("str");
 		}
 		{
 			twilio:send_sms("+18588292034", "+18587629753", message);

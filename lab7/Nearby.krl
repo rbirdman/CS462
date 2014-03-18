@@ -28,13 +28,16 @@ ruleset Nearby {
 			
 			x = lat - Location:latitude();
 			y = long - Location:longitude();
+			
+			distance = math:sqrt(x*x + y * y)
 		}
 		
-		if math:sqrt(x*x + y * y) < 5 then {
+		if distance < 5 then {
 			noop();
 		}
 		fired {
-			raise explicit event location_nearby;
+			raise explicit event location_nearby
+				with distance = distance;
 		}
 		else {
 			raise explicit event location_far;
