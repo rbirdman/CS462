@@ -17,13 +17,10 @@ ruleset Foursquare {
 	}
 	
 	global {
-		getKey = function(key) {
-			query = page:url("query").replace(re/&/g, "=");
-			queries = query.split(re/=/);
-			index = queries.index(key);
 
-			user = (index < 0) => null | queries[index + 1];
-			user
+		subscription_map = {
+			"rlbird22-1@gmail.com": "9F4D38E8-AEE5-11E3-ACB1-6B87833561DC",
+			"rlbird22-2@gmail.com": "5164B1F2-AEE4-11E3-9269-B66CD61CF0AC"
 		};
 	}
 	
@@ -87,6 +84,18 @@ ruleset Foursquare {
 			raise pds event new_location_data
 				with key = "fs_checkin"
 					and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "createdAt" : createdAt, "lat": lat, "long": long};
+		}
+	}
+	
+	rule sendLocation is active {
+		select when foursquare checkin
+		foreach subscription_map setting (channelName,cid)
+		pre {
+			loc = venue.pick("$.location");
+			send_map = {"cid": cid, "location": loc};
+		}
+		{
+			event:send(send_map, "location", "notification");
 		}
 	}
 	
