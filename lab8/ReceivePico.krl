@@ -21,7 +21,7 @@ ruleset Receiver {
 		pre {
 			dataString = ent:eventAttrs.encode();
 			my_html = <<
-				<div id="main">Received data: #{ent:location}<br>Event Data #{dataString}<br>Event Data #{dataString.as("str")}</div>
+				<div id="main">Received data: #{ent:location.as("str")}<br>Event Data #{dataString}<br>Event Data #{dataString.as("str")}</div>
 			>>;
 		}
 		{
