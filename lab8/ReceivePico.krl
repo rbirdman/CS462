@@ -20,7 +20,7 @@ ruleset Receiver {
 		select when web cloudAppSelected
 		pre {
 			my_html = <<
-				<div id="main">Texting: #{ent:location}</div>
+				<div id="main">Received data: #{ent:location}<br>Event Data #{ent:eventAttrs}</div>
 			>>;
 		}
 		{
@@ -36,6 +36,7 @@ ruleset Receiver {
 		select when location notification
 		pre {
 			loc = event:attr("location");
+			eventAttrs = event:attrs();
 		}
 		
 		{
@@ -43,6 +44,7 @@ ruleset Receiver {
 		}
 		fired {
 			set ent:location loc;
+			set ent:eventAttrs eventAttrs;
 		}
 	}
 }
