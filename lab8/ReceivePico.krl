@@ -36,14 +36,13 @@ ruleset Receiver {
 		select when location notification
 		pre {
 			loc = event:attr("location");
-	
 		}
 		
 		{
 			send_directive("Pico received data") with location = loc;
 		}
 		fired {
-			set ent:location lat;
+			set ent:location loc;
 		}
 	}
 }
