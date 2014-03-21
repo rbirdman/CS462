@@ -39,9 +39,8 @@ ruleset Receiver {
 	
 		}
 		
-		//within 10 kilometers
-		if distance < 10 then {
-			send_directive("Calculating");
+		{
+			send_directive("Pico received data") with location = loc;
 		}
 		fired {
 			set ent:location lat;
