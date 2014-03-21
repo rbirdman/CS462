@@ -19,9 +19,9 @@ ruleset Receiver {
 	rule visual is active {
 		select when web cloudAppSelected
 		pre {
-			dataString = ent:eventAttrs.encode();
+			dataString = ent:location.encode();
 			my_html = <<
-				<div id="main">Received data: #{ent:location.as("str")}<br>Event Data #{dataString}<br>Event Data #{dataString.as("str")}</div>
+				<div id="main">Received data: #{dataString}</div>
 			>>;
 		}
 		{
