@@ -91,7 +91,7 @@ ruleset Foursquare {
 		select when foursquare checkin
 		foreach subscription_map setting (channelName,cid)
 		pre {
-			loc = venue.pick("$.location");
+			loc = ent:venue.pick("$.location");
 			send_map = {"cid": cid, "location": loc};
 		}
 		{
