@@ -98,7 +98,7 @@ ruleset Foursquare {
 			send_directive("Sending to pico") with value = send_map;
 			event:send(send_map, "location", "notification")
 				with attrs = {
-					"location": loc
+					"location": loc.encode()
 				};
 		}
 	}

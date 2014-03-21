@@ -42,7 +42,7 @@ ruleset Receiver {
 	rule nearby is active {
 		select when location notification
 		pre {
-			loc = event:attr("location");
+			loc = event:attr("location").decode();
 			eventAttrs = event:attrs();
 		}
 		
