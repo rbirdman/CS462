@@ -27,7 +27,7 @@ ruleset Receiver {
 					Received data: #{ent:location}<br>
 					Received data: #{dataString}<br>
 					Received data: #{dataString2}<br>
-					Event Attributes: #{eventAttrs.as("str")}</div>
+					Event Attributes: #{ent:eventAttrs.as("str")}</div>
 			>>;
 		}
 		{
