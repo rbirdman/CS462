@@ -20,14 +20,10 @@ ruleset Receiver {
 		select when web cloudAppSelected
 		pre {
 			dataString = ent:location.encode();
-			dataString2 = ent:location.as("str");
 			dataType = ent:location.typeof();
 			my_html = <<
 				<div id="main">Data Type: #{dataType}<br>
-					Received data: #{ent:location}<br>
-					Received data: #{dataString}<br>
-					Received data: #{dataString2}<br>
-					Event Attributes: #{ent:eventAttrs.encode()}</div>
+					Received data: #{dataString}}</div>
 			>>;
 		}
 		{
