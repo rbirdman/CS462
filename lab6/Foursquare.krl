@@ -20,7 +20,9 @@ ruleset Foursquare {
 
 		subscription_map = {
 			"rlbird22-1@gmail.com": "9F4D38E8-AEE5-11E3-ACB1-6B87833561DC",
-			"rlbird22-2@gmail.com": "5164B1F2-AEE4-11E3-9269-B66CD61CF0AC"
+			"rlbird22-2@gmail.com": "5164B1F2-AEE4-11E3-9269-B66CD61CF0AC",
+			"cedesue@gmail.com": "48A2CD0C-B483-11E3-8919-F118ABD0D405",
+			"cedesue-2@gmail.com": "BD5B7C66-B483-11E3-A317-856AAD931101"
 		};
 	}
 	
